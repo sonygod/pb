@@ -1,0 +1,24 @@
+language: haxe
+
+os: linux
+dist: trusty
+
+haxe:
+  - development
+  - "4.0.0-preview.5"
+
+matrix:
+  allow_failures:
+    - haxe: "3.4.7"
+
+install:
+  - yes | haxelib install all
+  - pushd samples
+  - yes | haxelib install all
+  - popd
+  - haxelib dev heaps .
+  - haxelib list
+
+script:
+  - haxe all.hxml
+  - haxe --cwd samples all.hxml

@@ -1,0 +1,14 @@
+
+
+-cp src
+-cp samples
+-java java
+-main Main
+-lib heaps
+-lib ds
+-lib random
+-lib tink_json
+-lib hxbit
+-lib crypto
+-dce full
+

@@ -1,0 +1,84 @@
+import sys.db.Sqlite;
+import haxe.ds.Map;
+import sys.io.File;
+
+
+typedef EResult = {
+	var arr:Array<UInt>;
+	var sum:Array<UInt>;
+@:optional	var niu:Array<UInt>;
+}
+
+typedef EPK= {
+@:optional	var arr:Array<UInt>;
+@:optional	var niu:Array<UInt>;
+
+}
+class Pk10Data implements hxbit.Serializable {
+ //   @:s public var map:Map<Int, Array<Array<UInt>>> = []
+      @:s public var map:Map<Int, Array<EPK>> = [];
+   
+       public function new() {
+		   
+	   }
+  
+}
+
+class Main {
+	static function main() {
+		var s = new hxbit.Serializer();
+		var data=new Pk10Data();
+		var map=data.map;
+		
+   
+		NiuNiu.test();
+		
+		trace("Hello, world!");
+		var total = 10;
+		var sequence = [for (i in 1...total + 1) i];
+
+		// heapPermutation(sequence, total, total);
+		var start = Date.now().getTime();
+		var result:Array<EResult> = [];
+		var m = new Permutation(sequence, function(a) {
+			// a = Random.shuffle(a);
+
+			for (e in a) {
+				var er:EResult = {arr: e, sum: [], niu: []};
+				result.push(er);
+				var i = 0;
+				while (i < e.length - 4) {
+					var j = 0;
+					var sum = 0;
+					var tempNiuNiu = [];
+					while (j < 5) {
+						sum += e[i + j];
+						tempNiuNiu.push(e[i + j]);
+						j++;
+					}
+					er.niu .push(NiuNiu.check_NiuPoint(tempNiuNiu));
+					er.sum.push(sum);
+					i++;
+				}
+				var tempSum = er.sum.copy();
+				tempSum.sort(function(aa, bb) {
+					return bb > aa ? 1 : -1;
+				});
+				var index = er.sum.indexOf(tempSum[0]);
+				if (!map.exists(index)) {
+					map[index] =[];
+				}
+				map[index].push({arr:er.arr});
+			};
+		});
+		trace('spend time=${Date.now().getTime() - start}');
+
+		trace("finish");
+
+		trace(map[Random.int(0, 6)].slice(0,2));
+
+	
+		// var f=Json.stringify(map);
+		//	File.saveContent("c:/pk10.json",f);
+	}
+}

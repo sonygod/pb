@@ -1,0 +1,11 @@
+-cp src
+-js source/TestSqlite.js
+-lib random
+-main TestSqlite
+-lib tink_await
+-lib tink_core
+-lib ds
+-lib hxnodejs
+-dce full
+
+

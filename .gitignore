@@ -1,0 +1,16 @@
+*.n
+*.swf
+*.js
+*.js.map
+*.obj
+bin
+.tmp
+/hxd/net/inspect.min.css
+/hxd/inspect/inspect.min.css
+/samples/build
+/*.xml
+.vscode
+/tools/mikktspace/out
+*.exe
+klsf_2.db
+klsf_7.db

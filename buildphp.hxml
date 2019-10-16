@@ -1,0 +1,9 @@
+-cp src
+-php bin/php
+-main Server
+-lib random
+-lib tink_web
+-dce full
+-debug
+
+

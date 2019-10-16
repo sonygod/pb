@@ -1,0 +1,10 @@
+-cp src
+-cpp source/cpp
+-lib random
+-main TestSqlite
+-lib tink_await
+-lib tink_core
+-lib ds
+-dce full
+
+

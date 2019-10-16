@@ -1,0 +1,10 @@
+-cp src
+-neko source/TestSqlite.n
+-lib random
+-main TestSqlite
+-lib tink_await
+-lib tink_core
+-D SERVER
+-lib ds
+
+

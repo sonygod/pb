@@ -1,0 +1,13 @@
+# -cp src
+# -main Server
+# -hl bin/test.hl
+
+# -lib tink_await
+# -D hl-ver=1.11.0
+# --next
+
+-cp src
+-main Server
+-js bin/test.js
+-lib tink_await
+-lib hxnodejs

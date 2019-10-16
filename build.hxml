@@ -1,0 +1,37 @@
+-cp src
+-cp samples
+-js bin/node/heaps.js
+-main Main
+-lib heaps
+-lib ds
+-lib random
+-lib hxnodejs
+-lib tink_json
+-lib hxbit
+-lib crypto
+-lib tink_web
+-dce full
+-D js-es=6
+-debug
+-lib hxgenjs
+-lib tink_querystring
+-lib tink_core
+--next
+
+-cp src
+-cp samples
+-js bin/heaps.js
+-main Main
+-lib tink_web
+-lib heaps
+-lib ds
+-lib random
+-lib hxnodejs
+-lib tink_querystring
+-lib tink_json
+-lib hxbit
+-lib crypto
+-dce full
+-D js-es=6
+-debug
+-lib tink_core
