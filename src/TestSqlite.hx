@@ -1,3 +1,5 @@
+import haxe.MainLoop;
+import gen.GenKLSF;
 import sys.io.File;
 import haxe.Json;
 import sys.db.Sqlite;
@@ -132,14 +134,34 @@ class TestSqlite {
 
 	public static function main() {
 		CustomTrace.init();
+		GenKLSF.gen();
 
+		 
+
+
+	}
+
+	public static function main2() {
+		CustomTrace.init();
+
+    
+	for(i in 0...5){
+
+		MainLoop.addThread(function (){
+			Sys.sleep(1);
+
+			trace(i);
+		});
+	}
+
+return;
 		var cndb = Sqlite.open("./klsfx4.db");
 
 		// 这里才是最终。
 
 		var cnx = regenRandom(cndb);
 
-		var q = "select * from fa_result where  sum=84 and sum&1=0 and n8%10<5";
+		var q = "select * from fa_result where  n1=1 and n2=2 and n3=3 and n4=4 ";
 
 		var rs = cnx.request(q);
 
