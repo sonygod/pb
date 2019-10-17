@@ -37,12 +37,14 @@ class GenKLSF {
 
 		computeAllChoices(data, data.value.length, 8, 0, 8, [], 0, result);
 
-		var cnx = Sqlite.open("./klsfx8.db");
+		for (k in 0...6) {
+			MainLoop.addThread(function() {
+				var cnx = Sqlite.open('./klsfx8_${k + 1}.db');
 
-	//	cnx.request("PRAGMA synchronous = OFF");
-		//cnx.request("PRAGMA locking_mode=EXCLUSIVE"); // 不需要多个
-
-		cnx.request("
+				cnx.request("PRAGMA synchronous = OFF");
+				cnx.request("PRAGMA locking_mode=EXCLUSIVE"); // 不需要多个
+				cnx.request("PRAGMA journal_mode=WAL");
+				cnx.request("
                 CREATE TABLE IF NOT EXISTS fa_game (
                     id integer NOT NULL PRIMARY KEY AUTOINCREMENT,
                     n1 integer  NOT NULL DEFAULT 0,
@@ -58,44 +60,41 @@ class GenKLSF {
                 )
                 ");
 
-		trace("ready?");
-		cnx.request("begin;");
-		trace(result.value.length);
-		var currentIndex = 0;
-		var wasLocking=false;
-		for (k in 0...6) {
-			MainLoop.addThread(function() {
+				trace("ready?");
+
+				trace(result.value.length);
+				var currentIndex = 0;
+				var wasLocking = false;
 				while (currentIndex < result.value.length) {
 					var i = 20095 * k;
 					var total = 20095 * (k + 1);
 
 					trace('start=$i end=$total \n');
 					while (i < total) {
-						trace("what?"+currentIndex);
 						var result2:Ref<Array<Array<Int>>> = [];
 						Permutation.gen(result.value[i], function(arr) {
 							i++;
 							currentIndex++;
 							trace("finish" + i);
+							if (arr.length > 0) {
+								cnx.request("begin;");
 
-							for (e in arr) {
-								var q = 'INSERT INTO fa_game (n1,n2,n3,n4,n5,n6,n7,n8) VALUES(${e[0]},${e[1]},${e[2]},${e[3]},${e[4]},${e[5]},${e[6]},${e[7]})';
+								for (e in arr) {
+									var q = 'INSERT INTO fa_game (n1,n2,n3,n4,n5,n6,n7,n8) VALUES(${e[0]},${e[1]},${e[2]},${e[3]},${e[4]},${e[5]},${e[6]},${e[7]})';
 
-								// trace(q);
-								while (wasLocking){
-								    Sys.sleep(0.001);
+									// trace(q);
+
+									var rs = cnx.request(q);
 								}
-								wasLocking=true;
-								var rs = cnx.request(q);
-								wasLocking=false;
+								cnx.request("commit;");
 							}
-
 							//   trace(rs.length);//here cpp will crash.
 						}, result2);
+
+						trace(currentIndex);
 					}
 				};
 			});
 		}
-		cnx.request("commit;");
 	}
 }

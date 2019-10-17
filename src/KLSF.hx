@@ -31,7 +31,109 @@
 	12.选五任选：指从01至20中任意选择5个号码，对开奖号码中任意5个位置的投注。 投注号码与开奖号码中任意5个位置的号码相符，即中奖。
  */
 
+import tink.macro.DirectType;
+import haxe.ds.Map;
+
 using Lambda;
+
+// 赔率
+class AwardBothSidePersent {
+	public var big:Float = 1.996;
+	public var small:Float = 1.996;
+	public var single:Float = 1.996;
+	public var double:Float = 1.996;
+	public var dragen:Float = 1.996;
+	public var tiger:Float = 1.996;
+	public var tailBig:Float = 1.996;
+	public var tailSmall:Float = 1.996;
+	public var heshudan:Float = 1.996;
+	public var heshusuang:Float = 1.996;
+}
+
+class AwardSingel {
+	public var persent:Float = 19.96;
+}
+
+class SpecialPersent {}
+
+@:enum
+abstract DirType(UInt) from UInt to UInt {
+	var east = 0; // 东
+	var west = 1; // 西
+	var north = 2; // 南
+	var south = 3; // 北
+	var mid = 4; // 中
+	var fa = 5; // 发
+	var bai = 6; // 白
+
+	@:op(A < B) static function lt(a:DirType, b:DirType):Bool;
+
+	@:op(A <= B) static function lte(a:DirType, b:DirType):Bool;
+
+	@:op(A > B) static function gt(a:DirType, b:DirType):Bool;
+
+	@:op(A >= B) static function gte(a:DirType, b:DirType):Bool;
+
+	@:op(A == B) static function eq(a:DirType, b:DirType):Bool;
+
+	@:op(A != B) static function ne(a:DirType, b:DirType):Bool;
+
+	@:op(A + B) static function add(a:DirType, b:DirType):UInt;
+}
+
+// 每一球
+typedef BallScore = {
+	var index:Int; // 序号
+	var number:Int; // 号码
+	var big:Int; // 大
+	var small:Int; // 小
+	var single:Int; // 单
+	var double:Int; // 双
+	var dragen:Int; // 龙
+	var tiger:Int; // 虎
+	var tailBig:Int; // 尾巴大
+	var tailSmall:Int; // 尾巴小
+	var heshudan:Int; // 合数单
+	var heshusuang:Int; // 合数双
+	var dirct:DirType;
+}
+
+// 总和
+class SumScore {
+	public var big:Int;
+	public var small:Int;
+	public var single:Int;
+	public var double:Int;
+	public var dragen:Int;
+	public var tiger:Int;
+	public var tailBig:Int;
+	public var tailSmall:Int;
+}
+
+/**
+ * 两面
+ */
+class LiangmianType {
+	public var sum:SumScore;
+	public var balls:Array<BallScore>;
+}
+
+/**
+ * 单号1-8
+ */
+class SignType {
+	//	var map:Map<Int, Int>
+	var all:Array<BallScore>;
+}
+
+/**
+ * 第一球到第八球
+ */
+class EachType {
+	var all:Array<BallScore>;
+
+	
+}
 
 class KLSF {
 	public static function checkDouble(n:UInt) {
