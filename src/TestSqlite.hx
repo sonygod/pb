@@ -17,66 +17,79 @@ class CustomTrace {
 	}
 }
 
-typedef Scroe = {
-	var id:Int;
-	var roomID:Int;
-	var round:Int;
-	var cards:Array<Int>;
-
-	var earnMoney:Int;
-	var loseMoney:Int;
-	var fk:Int;
-	var time:Date;
-	var key:Int;
-}
-
-typedef Result_Sql = {
-	var id:Int;
-	var n1:Int;
-	var n2:Int;
-	var n3:Int;
-	var n4:Int;
-}
-
-@await
 class TestSqlite {
-	@async
 	public static function main() {
 		CustomTrace.init();
 
-		var total = 90;
-		var arr = [];
-		trace("准备打开数据库");
-		for (i in 0...total) {
-			var cnx = Sqlite.open('./database/klsf/klsf6_$i.db');
-			arr.push(cnx);
-			// 这里才是最终。
+		var data:Ref<Array<Int>> = [for (i in 1...21) i];
 
-			cnx.request("PRAGMA synchronous = OFF");
-			cnx.request("PRAGMA locking_mode=EXCLUSIVE"); // 不需要多个
-			cnx.request("PRAGMA journal_mode=WAL");
+		var result:tink.core.Ref<Array<Array<Int>>> = [];
+
+		GenKLSF.computeAllChoices(data, data.value.length, 8, 0, 8, [], 0, result);
+		var len = result.value.length;
+		trace('总数${result.value.length}');
+		var index = 0;
+
+		var threadCounts =10;
+
+		var eachCount = Std.int(len / threadCounts);
+
+		trace(eachCount);
+		var totals = 0;
+
+		for (i in 0...threadCounts) {
+			var start = i * eachCount;
+			var end = (i + 1) * eachCount;
+
+			var total = 0;
+			// trace('start=$start end=$end');
+			for (k in start...end) {
+				if (total > end) {
+					trace('i=$i start=$start end=$end total=$total k=$k');
+					throw "fuck!";
+				}
+				// trace(total);
+				total += 1;
+			}
+
+			totals += total;
+
+			trace('totals=$totals  total=$total i=$i');
+			// if(totals>len){
+			// 	totals-=eachCount;
+			// 		break;
+			// }
 		}
 
-		trace("准备查询");
-		// cnx.request(" PRAGMA cache_size=5000");
-
-		//	trace('ready search =$i ');
-
-		for (i in 0...arr.length) {
+		trace(totals);
+		//	return;
+		for (i in 0...threadCounts) {
 			MainLoop.addThread(function() {
-				var cnx = arr[i];
-				var q = 'SELECT * FROM "fa_result" where sum>80 limit 10';
+				for (k in i * eachCount...(i + 1) * eachCount) {
+					var currentIndex=k+i;
+					index++;
+					var item = result.value[currentIndex];
 
-				var rs = cnx.request(q);
+					var r:Ref<Array<Array<Int>>> = [];
 
-				var len = rs.length;
+                 if(!sys.FileSystem.exists('./database/json/klsf_$currentIndex.json')){
+					   
+				 File.saveContent('./database/json/klsf_$currentIndex.json', Json.stringify(""));
+					new Permutation(item, function(d) {
+					
+				
+						File.saveContent('./database/json/klsf_$currentIndex.json', Json.stringify(d));
+						var remain = len - index;
 
-				if (len > 0) {
-					trace('有数据 长度=$len 在数据库 klsf6_$i.db \n');
+					
+							trace('当前线程 $i 当前数量${k+i} 索引是=$index klsf_$currentIndex.json');
+						
+					}, r);
+					}else{
+						//trace("文件存在，忽略!"+currentIndex);
+					}
 				}
 			});
-		};
-
-		trace("查询结束！");
+		}
 	}
 }

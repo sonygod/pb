@@ -83,19 +83,20 @@ abstract DirType(UInt) from UInt to UInt {
 
 // 每一球
 typedef BallScore = {
-	var index:Int; // 序号
-	var number:Int; // 号码
-	var big:Int; // 大
-	var small:Int; // 小
-	var single:Int; // 单
-	var double:Int; // 双
-	var dragen:Int; // 龙
-	var tiger:Int; // 虎
-	var tailBig:Int; // 尾巴大
-	var tailSmall:Int; // 尾巴小
-	var heshudan:Int; // 合数单
-	var heshusuang:Int; // 合数双
-	var dirct:DirType;
+	@:optional var index:Int; // 序号
+	@:optional var number:Int; // 号码
+	@:optional var big:Int; // 大
+	@:optional var small:Int; // 小
+	@:optional var single:Int; // 单
+	@:optional var double:Int; // 双
+	@:optional var dragen:Int; // 龙
+	@:optional var tiger:Int; // 虎
+	@:optional var tailBig:Int; // 尾巴大
+	@:optional var tailSmall:Int; // 尾巴小
+	@:optional var heshudan:Int; // 合数单
+	@:optional var heshusuang:Int; // 合数双
+	@:optional var dirct:DirType; // 东南西北东发白。
+	@:optional var odds:Float; // 赔率
 }
 
 // 总和
@@ -131,8 +132,14 @@ class SignType {
  */
 class EachType {
 	var all:Array<BallScore>;
+}
 
-	
+class LianMa {
+	var all:Array<Array<BallScore>>;
+}
+
+class ZhenMa {
+	var all:Array<BallScore>;
 }
 
 class KLSF {

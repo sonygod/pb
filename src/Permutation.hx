@@ -9,20 +9,15 @@ class Permutation {
 
 	private var callBack:Array<Array<Int>>->Void;
 
-	public function new(arr:Array<UInt>, callBack:Array<Array<UInt>>->Void) {
-		// var i = arr.length;
-		// var total = 1;
+	public function new(arr:Array<UInt>, callBack:Array<Array<UInt>>->Void,result:Ref<Array<Array<Int>>>) {
+		var i = arr.length;
+		var total = 1;
+		while (i > 0) {
+			total *= i;
+			i--;
+		}
 
-		// while (i > 0) {
-		// 	total *= i;
-		// 	i--;
-		// }
-
-		// //trace("total ="+total);
-		// this.total = total;
-		// this.callBack = callBack;
-
-		// heapPermutation(arr, arr.length);
+		heapPermutation(arr, arr.length, total, callBack, result);
 	}
 
 	public static function gen(arr:Array<UInt>, callBack:Array<Array<UInt>>->Void, result:Ref<Array<Array<Int>>>) {
@@ -32,7 +27,7 @@ class Permutation {
 			total *= i;
 			i--;
 		}
-   
+
 		heapPermutation(arr, arr.length, total, callBack, result);
 	}
 
