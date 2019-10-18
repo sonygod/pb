@@ -39,7 +39,7 @@ typedef Result_Sql = {
 }
 
 @await
-class TestSqlite {
+class GenKLSFDatabase {
 	public static function computeAllChoices(data:Ref<Array<Int>>, n:Int, outLen:Int, startIndex:Int, m:Int, arr:Array<Int>, arrIndex:Int,
 			result:Ref<Array<Array<Int>>>) {
 		if (m == 0) {
@@ -64,28 +64,25 @@ class TestSqlite {
 	}
 
 	public static function regenRandom(cndb:sys.db.Connection) {
-
-
 		return tink.core.Future.async(function(cb) {
-		
 			var arr = [];
 			var currentIndex = 0;
 			var threadCount = 0;
-			var results="";
+			var results = "";
 
-			var len=116280;
+			var len = 116280;
 
-			var sq=90;
+			var sq = 90;
 
-			var from=Std.int(len/sq);
+			var from = Std.int(len / sq);
 			for (k in 0...sq) {
-				var map:Map<Int,Array<Array<Int>>>=[];
+				var map:Map<Int, Array<Array<Int>>> = [];
 				var cnx = Sqlite.open('./klsf6_$k.db');
 				arr.push(cnx);
 				cnx.request("PRAGMA synchronous = OFF");
 				cnx.request("PRAGMA locking_mode=EXCLUSIVE"); // 不需要多个
 				cnx.request("PRAGMA journal_mode=WAL");
-				
+
 				cnx.request("
                 CREATE TABLE IF NOT EXISTS fa_result (
                     id integer NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -135,20 +132,19 @@ class TestSqlite {
 						for (j in k * numbers...(k + 1) * numbers) {
 							var e:Result_Sql = arr1[i];
 							var f:Result_Sql = arr2[j];
-                            
+
 							// var sum = e.n1 + e.n2 + e.n3 + e.n4 + f.n1 + f.n2 + f.n3 + f.n4;
 							// var arr = [e.n1, e.n2, e.n3, e.n4, f.n1, f.n2, f.n3, f.n4];
-								currentIndex++;
+							currentIndex++;
 							// if(currentIndex>10000000){
 							// 	break;
 							// }
 							// var q = "INSERT INTO fa_result (n1,n2,n3,n4,n5,n6,n7,n8,sum) VALUES ("+e.n1+","+e.n2+","+e.n3+","+e.n4+","+f.n1+","+f.n2+","+f.n3+","+f.n4+","+sum+")";
 							var q = 'INSERT INTO fa_result (n1,n2,n3,n4,n5,n6,n7,n8,sum) VALUES(${e.n1},${e.n2},${e.n3},${e.n4},${f.n1},${f.n2},${f.n3},${f.n4},${e.n1 + e.n2 + e.n3 + e.n4 + f.n1 + f.n2 + f.n3 + f.n4})';
 
-						    cnx.request(q);
-							
-						
-							//map.set(currentIndex,[[e.n1 , e.n2, e.n3 , e.n4],[f.n1 , f.n2, f.n3 , f.n4]]);
+							cnx.request(q);
+
+							// map.set(currentIndex,[[e.n1 , e.n2, e.n3 , e.n4],[f.n1 , f.n2, f.n3 , f.n4]]);
 
 							// if (currentIndex % 10000 == 0) {
 							// 	trace('当前线程 $k  currentIndex=$currentIndex  ${(k+1)*numbers}');
