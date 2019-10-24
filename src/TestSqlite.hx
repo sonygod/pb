@@ -217,11 +217,24 @@ class TestSqlite {
 		var a = 'select \n';
 
 		var b = '';
-
+        var sum=', \n(';
 		for (i in 1...total + 1) {
 			b += 'E${i}.i as n${i}' + (i < total ? "," : "");
+          sum+='E${i}.i';
+		  if(i<total){
+			  
+			  sum+="+";
+		  }else{
+			  sum+=") as sum \n";
+		  }
 		}
+       
 
+	   trace(sum);
+        
+
+
+        
 		var c = ' \n from ';
 
 		for (i in 1...total + 1) {
@@ -254,7 +267,7 @@ class TestSqlite {
 
 		var e=" limit 100,200";
 
-		var createPerMutationQ = a + b + c + d+e; // 这个计算出开奖玩法的概率数据。
+		var createPerMutationQ = a + b +sum+ c + d+e; // 这个计算出开奖玩法的概率数据。
 
 		trace(createPerMutationQ);
 
