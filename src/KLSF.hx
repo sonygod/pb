@@ -97,8 +97,22 @@ typedef BallScore = {
 	@:optional var heshusuang:Int; // 合数双
 	@:optional var dirct:DirType; // 东南西北东发白。
 	@:optional var odds:Float; // 赔率
+	@:optional var total:Float;//投注总额
+	@:optional var pait:Float;//要赔付总额
+	@:optional var persent:Float;//赔付百分比
 }
 
+typedef BallScoreType = {
+	@:optional var index:Int;//位置。
+	@:optional var n1:Int; // 序号 大小
+	@:optional var n2:Int; // 序号 单双
+	@:optional var n3:Int; // 序号  合数
+	@:optional var n4:Int; // 序号  尾巴
+    @:optional var n5:Int; // 序号  龙虎
+	@:optional var persent:Float; // 赔率
+	@:optional var total:Float; // 总投注
+	@:optional var pait:Float;//要赔付总额
+}
 // 总和
 class SumScore {
 	public var big:Int;
@@ -110,6 +124,8 @@ class SumScore {
 	public var tailBig:Int;
 	public var tailSmall:Int;
 }
+
+
 
 /**
  * 两面

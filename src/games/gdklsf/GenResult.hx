@@ -1,11 +1,14 @@
 package games.gdklsf;
 
+import KLSF.BallScoreType;
 import sys.db.Sqlite;
 import sys.thread.Mutex;
 import haxe.MainLoop;
 
 class GenResult {
-	public static function gen(callBack:sys.db.Connection->sys.db.ResultSet->Void) {
+	public static function gen(where:String,callBack:sys.db.Connection->sys.db.ResultSet->Void) {
+
+       
 		//----------------------------------------------------开始创建
 		var cnr = Sqlite.open(":memory:");
 
@@ -16,102 +19,102 @@ class GenResult {
 		cnr.request("PRAGMA locking_mode=EXCLUSIVE"); // 不需要多个
 		cnr.request("PRAGMA journal_mode=WAL");
 
-		var createTableArr = 'DROP TABLE IF EXISTS "Elements_GDKLSF";
-			CREATE TABLE "Elements_GDKLSF" (
+		var createTableArr = 'DROP TABLE IF EXISTS "Elements";
+			CREATE TABLE "Elements" (
 			"i" int NOT NULL,
 			PRIMARY KEY ("i")
 			);
 
 			-- ----------------------------
-			-- Records of "Elements_GDKLSF"
+			-- Records of "Elements"
 			-- ----------------------------
 			------------------------------------------
-			INSERT INTO "Elements_GDKLSF" VALUES (1);
-			INSERT INTO "Elements_GDKLSF" VALUES (2);
-			INSERT INTO "Elements_GDKLSF" VALUES (3);
-			INSERT INTO "Elements_GDKLSF" VALUES (4);
-			INSERT INTO "Elements_GDKLSF" VALUES (5);
-			INSERT INTO "Elements_GDKLSF" VALUES (6);
+			INSERT INTO "Elements" VALUES (1);
+			INSERT INTO "Elements" VALUES (2);
+			INSERT INTO "Elements" VALUES (3);
+			INSERT INTO "Elements" VALUES (4);
+			INSERT INTO "Elements" VALUES (5);
+			INSERT INTO "Elements" VALUES (6);
 			------------------------------------------
-			INSERT INTO "Elements_GDKLSF" VALUES (11);
-			INSERT INTO "Elements_GDKLSF" VALUES (12);
-			INSERT INTO "Elements_GDKLSF" VALUES (13);
-			INSERT INTO "Elements_GDKLSF" VALUES (14);
-			INSERT INTO "Elements_GDKLSF" VALUES (15);
-			INSERT INTO "Elements_GDKLSF" VALUES (16);
-			INSERT INTO "Elements_GDKLSF" VALUES (17);
-			INSERT INTO "Elements_GDKLSF" VALUES (18);
-			INSERT INTO "Elements_GDKLSF" VALUES (19);
+			INSERT INTO "Elements" VALUES (11);
+			INSERT INTO "Elements" VALUES (12);
+			INSERT INTO "Elements" VALUES (13);
+			INSERT INTO "Elements" VALUES (14);
+			INSERT INTO "Elements" VALUES (15);
+			INSERT INTO "Elements" VALUES (16);
+			INSERT INTO "Elements" VALUES (17);
+			INSERT INTO "Elements" VALUES (18);
+			INSERT INTO "Elements" VALUES (19);
 			------------------------------------------
-			INSERT INTO "Elements_GDKLSF" VALUES (20);
-			INSERT INTO "Elements_GDKLSF" VALUES (21);
-			INSERT INTO "Elements_GDKLSF" VALUES (22);
-			INSERT INTO "Elements_GDKLSF" VALUES (23);
-			INSERT INTO "Elements_GDKLSF" VALUES (24);
-			INSERT INTO "Elements_GDKLSF" VALUES (25);
-			INSERT INTO "Elements_GDKLSF" VALUES (26);
-			INSERT INTO "Elements_GDKLSF" VALUES (27);
-			INSERT INTO "Elements_GDKLSF" VALUES (28);
-			INSERT INTO "Elements_GDKLSF" VALUES (29);
+			INSERT INTO "Elements" VALUES (20);
+			INSERT INTO "Elements" VALUES (21);
+			INSERT INTO "Elements" VALUES (22);
+			INSERT INTO "Elements" VALUES (23);
+			INSERT INTO "Elements" VALUES (24);
+			INSERT INTO "Elements" VALUES (25);
+			INSERT INTO "Elements" VALUES (26);
+			INSERT INTO "Elements" VALUES (27);
+			INSERT INTO "Elements" VALUES (28);
+			INSERT INTO "Elements" VALUES (29);
 			------------------------------------------
-			INSERT INTO "Elements_GDKLSF" VALUES (30);
-			INSERT INTO "Elements_GDKLSF" VALUES (31);
-			INSERT INTO "Elements_GDKLSF" VALUES (32);
-			INSERT INTO "Elements_GDKLSF" VALUES (33);
-			INSERT INTO "Elements_GDKLSF" VALUES (34);
-			INSERT INTO "Elements_GDKLSF" VALUES (35);
-			INSERT INTO "Elements_GDKLSF" VALUES (36);
-			INSERT INTO "Elements_GDKLSF" VALUES (37);
-			INSERT INTO "Elements_GDKLSF" VALUES (38);
-			INSERT INTO "Elements_GDKLSF" VALUES (39);
+			INSERT INTO "Elements" VALUES (30);
+			INSERT INTO "Elements" VALUES (31);
+			INSERT INTO "Elements" VALUES (32);
+			INSERT INTO "Elements" VALUES (33);
+			INSERT INTO "Elements" VALUES (34);
+			INSERT INTO "Elements" VALUES (35);
+			INSERT INTO "Elements" VALUES (36);
+			INSERT INTO "Elements" VALUES (37);
+			INSERT INTO "Elements" VALUES (38);
+			INSERT INTO "Elements" VALUES (39);
 			-----------------------------------------
-			INSERT INTO "Elements_GDKLSF" VALUES (40);
-			INSERT INTO "Elements_GDKLSF" VALUES (41);
-			INSERT INTO "Elements_GDKLSF" VALUES (42);
-			INSERT INTO "Elements_GDKLSF" VALUES (43);
-			INSERT INTO "Elements_GDKLSF" VALUES (44);
-			INSERT INTO "Elements_GDKLSF" VALUES (45);
-			INSERT INTO "Elements_GDKLSF" VALUES (46);
-			INSERT INTO "Elements_GDKLSF" VALUES (47);
-			INSERT INTO "Elements_GDKLSF" VALUES (48);
-			INSERT INTO "Elements_GDKLSF" VALUES (49);
+			INSERT INTO "Elements" VALUES (40);
+			INSERT INTO "Elements" VALUES (41);
+			INSERT INTO "Elements" VALUES (42);
+			INSERT INTO "Elements" VALUES (43);
+			INSERT INTO "Elements" VALUES (44);
+			INSERT INTO "Elements" VALUES (45);
+			INSERT INTO "Elements" VALUES (46);
+			INSERT INTO "Elements" VALUES (47);
+			INSERT INTO "Elements" VALUES (48);
+			INSERT INTO "Elements" VALUES (49);
 			------------------------------------------
-			INSERT INTO "Elements_GDKLSF" VALUES (50);
-			INSERT INTO "Elements_GDKLSF" VALUES (51);
-			INSERT INTO "Elements_GDKLSF" VALUES (52);
-			INSERT INTO "Elements_GDKLSF" VALUES (53);
-			INSERT INTO "Elements_GDKLSF" VALUES (54);
-			INSERT INTO "Elements_GDKLSF" VALUES (55);
-			INSERT INTO "Elements_GDKLSF" VALUES (56);
-			INSERT INTO "Elements_GDKLSF" VALUES (57);
-			INSERT INTO "Elements_GDKLSF" VALUES (58);
+			INSERT INTO "Elements" VALUES (50);
+			INSERT INTO "Elements" VALUES (51);
+			INSERT INTO "Elements" VALUES (52);
+			INSERT INTO "Elements" VALUES (53);
+			INSERT INTO "Elements" VALUES (54);
+			INSERT INTO "Elements" VALUES (55);
+			INSERT INTO "Elements" VALUES (56);
+			INSERT INTO "Elements" VALUES (57);
+			INSERT INTO "Elements" VALUES (58);
 			------------------------------------------
-			INSERT INTO "Elements_GDKLSF" VALUES (61);
-			INSERT INTO "Elements_GDKLSF" VALUES (62);
-			INSERT INTO "Elements_GDKLSF" VALUES (63);
-			INSERT INTO "Elements_GDKLSF" VALUES (64);
-			INSERT INTO "Elements_GDKLSF" VALUES (65);
-			INSERT INTO "Elements_GDKLSF" VALUES (66);
-			INSERT INTO "Elements_GDKLSF" VALUES (67);
-			INSERT INTO "Elements_GDKLSF" VALUES (68);
+			INSERT INTO "Elements" VALUES (61);
+			INSERT INTO "Elements" VALUES (62);
+			INSERT INTO "Elements" VALUES (63);
+			INSERT INTO "Elements" VALUES (64);
+			INSERT INTO "Elements" VALUES (65);
+			INSERT INTO "Elements" VALUES (66);
+			INSERT INTO "Elements" VALUES (67);
+			INSERT INTO "Elements" VALUES (68);
 			-----------------------------------------
-			INSERT INTO "Elements_GDKLSF" VALUES (71);
-			INSERT INTO "Elements_GDKLSF" VALUES (72);
-			INSERT INTO "Elements_GDKLSF" VALUES (73);
-			INSERT INTO "Elements_GDKLSF" VALUES (74);
-			INSERT INTO "Elements_GDKLSF" VALUES (75);
-			INSERT INTO "Elements_GDKLSF" VALUES (76);
-			INSERT INTO "Elements_GDKLSF" VALUES (77);
-			INSERT INTO "Elements_GDKLSF" VALUES (78);
+			INSERT INTO "Elements" VALUES (71);
+			INSERT INTO "Elements" VALUES (72);
+			INSERT INTO "Elements" VALUES (73);
+			INSERT INTO "Elements" VALUES (74);
+			INSERT INTO "Elements" VALUES (75);
+			INSERT INTO "Elements" VALUES (76);
+			INSERT INTO "Elements" VALUES (77);
+			INSERT INTO "Elements" VALUES (78);
 			------------------------------------------
-			INSERT INTO "Elements_GDKLSF" VALUES (81);
-			INSERT INTO "Elements_GDKLSF" VALUES (82);
-			INSERT INTO "Elements_GDKLSF" VALUES (83);
-			INSERT INTO "Elements_GDKLSF" VALUES (84);
-			INSERT INTO "Elements_GDKLSF" VALUES (85);
-			INSERT INTO "Elements_GDKLSF" VALUES (86);
-			INSERT INTO "Elements_GDKLSF" VALUES (87);
-			INSERT INTO "Elements_GDKLSF" VALUES (88);
+			INSERT INTO "Elements" VALUES (81);
+			INSERT INTO "Elements" VALUES (82);
+			INSERT INTO "Elements" VALUES (83);
+			INSERT INTO "Elements" VALUES (84);
+			INSERT INTO "Elements" VALUES (85);
+			INSERT INTO "Elements" VALUES (86);
+			INSERT INTO "Elements" VALUES (87);
+			INSERT INTO "Elements" VALUES (88);
 			---------------------------------------------
 			';
 
@@ -122,325 +125,150 @@ class GenResult {
 			var len = rs.length;
 		}
 
+     var q="select * from Elements ";
+
+    var rs = cnr.request(q);
+
+    for(r in rs){
+        trace(r.i);
+    }
 		trace("finish");
 
-		var total = 6;
-		var a = 'select \n';
-
-		var b = '';
-		var sum = ', \n(';
-		for (i in 1...total + 1) {
-			b += 'E${i}.i as n${i}' + (i < total ? "," : "");
-			sum += 'E${i}.i';
-			if (i < total) {
-				sum += "+";
-			} else {
-				sum += ") as sum \n";
-			}
-		}
-
-		trace(sum);
-
-		var c = ' \n from ';
-
-		for (i in 1...total + 1) {
-			c += 'Elements_GDKLSF as E$i ' + (i < total ? "," : "");
-		}
-
-		var d = '\n where \n';
-
-		for (i in 1...total + 1) {
-			if (i != 1) {
-				if (i != 2) {
-					d += "and ";
-				}
-				d += 'E${i}.i not in (';
-				var len = 0;
-				for (j in 1...i) {
-					if (j != i) {
-						d += 'E${j}.i';
-						len++;
-
-						if (len == i - 1) {
-							d += ")\n";
-						} else {
-							d += ',';
-						}
-					}
-				}
-			}
-		}
-
-		var e = " limit 100,200";
-
-		var createPerMutationQ = '
 		
 
-		select
-    *
+		var createPerMutationQ = '
+        select n1,n2,n3,n4,n5,n6,n7,n8 from(
+		SELECT
+	*,
+-----------------------------
+	n1 > n8 AS n1Long,
+	n2 > n7 AS n2Long,
+	n3 > n6 AS n3Long,
+	n4 > n5 AS n4Long,
+---------------------------
+-------------------------------
+	n1 >= 11 AS n1Big,
+	1 - n1 % 2 AS n1Double,
+	n2 >= 11 AS n2Big,
+	1 - n2 % 2 AS n2Double,
+	n3 >= 11 AS n3Big,
+	1 - n3 % 2 AS n3Double,
+	n4 >= 11 AS n4Big,
+	1 - n4 % 2 AS n4Double,
+	n5 >= 11 AS n5Big,
+	1 - n5 % 2 AS n5Double,
+	n6 >= 11 AS n6Big,
+	1 - n6 % 2 AS n6Double,
+	n7 >= 11 AS n7Big,
+	1 - n7 % 2 AS n7Double,
+	n8 >= 11 AS n8Big,
+	1 - n8 % 2 AS n8Double,
+	n8 % 2 AS n8Single,
+--------------大小 单双--------------------
+------------------------------------------------------------------------------------------------
+	CAST ( SUBSTR( CAST ( n1 AS text ), LENGTH( CAST ( n1 AS text ))) AS int ) >= 5 AS n1TailBig,
+	CAST ( SUBSTR( CAST ( n2 AS text ), LENGTH( CAST ( n2 AS text ))) AS int ) >= 5 AS n2TailBig,
+	CAST ( SUBSTR( CAST ( n3 AS text ), LENGTH( CAST ( n3 AS text ))) AS int ) >= 5 AS n3TailBig,
+	CAST ( SUBSTR( CAST ( n4 AS text ), LENGTH( CAST ( n4 AS text ))) AS int ) >= 5 AS n4TailBig,
+	CAST ( SUBSTR( CAST ( n5 AS text ), LENGTH( CAST ( n5 AS text ))) AS int ) >= 5 AS n5TailBig,
+	CAST ( SUBSTR( CAST ( n6 AS text ), LENGTH( CAST ( n6 AS text ))) AS int ) >= 5 AS n6TailBig,
+	CAST ( SUBSTR( CAST ( n7 AS text ), LENGTH( CAST ( n7 AS text ))) AS int ) >= 5 AS n7TailBig,
+	CAST ( SUBSTR( CAST ( n8 AS text ), LENGTH( CAST ( n8 AS text ))) AS int ) >= 5 AS n8TailBig,
+--------------------------------------------------------------------------------------------------------
+	(
+	CAST ( SUBSTR( n1, 0, LENGTH( n1 )) AS int ) + CAST ( SUBSTR( n1, LENGTH( n1 )) AS int )) % 2 = 0 AS n1CompatDouble,
+	(
+	CAST ( SUBSTR( n1, 0, LENGTH( n2 )) AS int ) + CAST ( SUBSTR( n2, LENGTH( n2 )) AS int )) % 2 = 0 AS n2CompatDouble,
+	(
+	CAST ( SUBSTR( n1, 0, LENGTH( n3 )) AS int ) + CAST ( SUBSTR( n3, LENGTH( n3 )) AS int )) % 2 = 0 AS n3CompatDouble,
+	(
+	CAST ( SUBSTR( n4, 0, LENGTH( n4 )) AS int ) + CAST ( SUBSTR( n4, LENGTH( n1 )) AS int )) % 2 = 0 AS n4CompatDouble,
+	(
+	CAST ( SUBSTR( n5, 0, LENGTH( n5 )) AS int ) + CAST ( SUBSTR( n5, LENGTH( n5 )) AS int )) % 2 = 0 AS n5CompatDouble,
+	(
+	CAST ( SUBSTR( n6, 0, LENGTH( n6 )) AS int ) + CAST ( SUBSTR( n6, LENGTH( n6 )) AS int )) % 2 = 0 AS n6CompatDouble,
+	(
+	CAST ( SUBSTR( n7, 0, LENGTH( n7 )) AS int ) + CAST ( SUBSTR( n7, LENGTH( n7 )) AS int )) % 2 = 0 AS n7CompatDouble,
+	(
+	CAST ( SUBSTR( n1, 0, LENGTH( n8 )) AS int ) + CAST ( SUBSTR( n8, LENGTH( n8 )) AS int )) % 2 = 0 AS n8CompatDouble 
 FROM
-    (
-        select
-            *,
-            n1 >= 11 as n1Big,
-            n1 < 11 as n1Small,
-            1 - n1 % 2 as n1Double,
-            n1 % 2 as n1Single,
-            n2 >= 11 as n2Big,
-            n2 < 11 as n2Small,
-            1 - n2 % 2 as n2Double,
-            n2 % 2 as n2Single,
-            n3 >= 11 as n3Big,
-            n3 < 11 as n3Small,
-            1 - n3 % 2 as n3Double,
-            n3 % 2 as n3Single,
-            n4 >= 11 as n4Big,
-            n4 < 11 as n4Small,
-            1 - n4 % 2 as n4Double,
-            n4 % 2 as n4Single,
-            n5 >= 11 as n5Big,
-            n5 < 11 as n5Small,
-            1 - n5 % 2 as n5Double,
-            n5 % 2 as n5Single,
-            n6 >= 11 as n6Big,
-            n6 < 11 as n6Small,
-            1 - n6 % 2 as n6Double,
-            n6 % 2 as n6Single,
-            n7 >= 11 as n7Big,
-            n7 < 11 as n7Small,
-            1 - n7 % 2 as n7Double,
-            n7 % 2 as n7Single,
-            n8 >= 11 as n8Big,
-            n8 < 11 as n8Small,
-            1 - n8 % 2 as n8Double,
-            n8 % 2 as n8Single,
-            CAST (
-                SUBSTR(cast(n1 as text), LENGTH(cast(n1 as text))) AS int
-            ) >= 5 AS n1TailBig,
-            CAST (
-                SUBSTR(cast(n2 as text), LENGTH(cast(n2 as text))) AS int
-            ) >= 5 AS n2TailBig,
-            CAST (
-                SUBSTR(cast(n3 as text), LENGTH(cast(n3 as text))) AS int
-            ) >= 5 AS n3TailBig,
-            CAST (
-                SUBSTR(cast(n4 as text), LENGTH(cast(n4 as text))) AS int
-            ) >= 5 AS n4TailBig,
-            CAST (
-                SUBSTR(cast(n5 as text), LENGTH(cast(n5 as text))) AS int
-            ) >= 5 AS n5TailBig,
-            CAST (
-                SUBSTR(cast(n6 as text), LENGTH(cast(n6 as text))) AS int
-            ) >= 5 AS n6TailBig,
-            CAST (
-                SUBSTR(cast(n7 as text), LENGTH(cast(n7 as text))) AS int
-            ) >= 5 AS n7TailBig,
-            CAST (
-                SUBSTR(cast(n8 as text), LENGTH(cast(n8 as text))) AS int
-            ) >= 5 AS n8TailBig,
-            CAST (
-                SUBSTR(cast(n1 as text), LENGTH(cast(n1 as text))) AS int
-            ) < 5 AS n1TailSmall,
-            CAST (
-                SUBSTR(cast(n2 as text), LENGTH(cast(n2 as text))) AS int
-            ) < 5 AS n2TailSmall,
-            CAST (
-                SUBSTR(cast(n3 as text), LENGTH(cast(n3 as text))) AS int
-            ) < 5 AS n3TailSmall,
-            CAST (
-                SUBSTR(cast(n4 as text), LENGTH(cast(n4 as text))) AS int
-            ) < 5 AS n4TailSmall,
-            CAST (
-                SUBSTR(cast(n5 as text), LENGTH(cast(n5 as text))) AS int
-            ) < 5 AS n5TailSmall,
-            CAST (
-                SUBSTR(cast(n6 as text), LENGTH(cast(n6 as text))) AS int
-            ) < 5 AS n6TailSmall,
-            CAST (
-                SUBSTR(cast(n7 as text), LENGTH(cast(n7 as text))) AS int
-            ) < 5 AS n7TailSmall,
-            CAST (
-                SUBSTR(cast(n8 as text), LENGTH(cast(n8 as text))) AS int
-            ) < 5 AS n8TailSmall,
-            ------------------------------------------------合数单双
-            1 - (
-                CAST (
-                    SUBSTR(cast(n1 as text), LENGTH(cast(n1 as text)) -1, 1) AS int
-                ) + CAST (
-                    SUBSTR(cast(n1 as text), LENGTH(cast(n1 as text)), 1) AS int
-                )
-            ) % 2 = 0 as n1CompatDouble,
-            (
-                CAST (
-                    SUBSTR(cast(n1 as text), LENGTH(cast(n1 as text)) -1, 1) AS int
-                ) + CAST (
-                    SUBSTR(cast(n1 as text), LENGTH(cast(n1 as text)), 1) AS int
-                )
-            ) % 2 = 0 as n1compatSingle,
-            1 - (
-                CAST (
-                    SUBSTR(cast(n2 as text), LENGTH(cast(n2 as text)) -1, 1) AS int
-                ) + CAST (
-                    SUBSTR(cast(n2 as text), LENGTH(cast(n2 as text)), 1) AS int
-                )
-            ) % 2 = 0 as n2CompatDouble,
-            (
-                CAST (
-                    SUBSTR(cast(n2 as text), LENGTH(cast(n2 as text)) -1, 1) AS int
-                ) + CAST (
-                    SUBSTR(cast(n2 as text), LENGTH(cast(n2 as text)), 1) AS int
-                )
-            ) % 2 = 0 as n2compatSingle,
-            1 - (
-                CAST (
-                    SUBSTR(cast(n3 as text), LENGTH(cast(n3 as text)) -1, 1) AS int
-                ) + CAST (
-                    SUBSTR(cast(n3 as text), LENGTH(cast(n3 as text)), 1) AS int
-                )
-            ) % 2 = 0 as n3CompatDouble,
-            (
-                CAST (
-                    SUBSTR(cast(n3 as text), LENGTH(cast(n3 as text)) -1, 1) AS int
-                ) + CAST (
-                    SUBSTR(cast(n3 as text), LENGTH(cast(n3 as text)), 1) AS int
-                )
-            ) % 2 = 0 as n3compatSingle,
-            1 - (
-                CAST (
-                    SUBSTR(cast(n4 as text), LENGTH(cast(n4 as text)) -1, 1) AS int
-                ) + CAST (
-                    SUBSTR(cast(n4 as text), LENGTH(cast(n4 as text)), 1) AS int
-                )
-            ) % 2 = 0 as n4CompatDouble,
-            (
-                CAST (
-                    SUBSTR(cast(n4 as text), LENGTH(cast(n4 as text)) -1, 1) AS int
-                ) + CAST (
-                    SUBSTR(cast(n4 as text), LENGTH(cast(n4 as text)), 1) AS int
-                )
-            ) % 2 = 0 as n4compatSingle,
-            1 - (
-                CAST (
-                    SUBSTR(cast(n5 as text), LENGTH(cast(n5 as text)) -1, 1) AS int
-                ) + CAST (
-                    SUBSTR(cast(n5 as text), LENGTH(cast(n5 as text)), 1) AS int
-                )
-            ) % 2 = 0 as n5CompatDouble,
-            (
-                CAST (
-                    SUBSTR(cast(n5 as text), LENGTH(cast(n5 as text)) -1, 1) AS int
-                ) + CAST (
-                    SUBSTR(cast(n5 as text), LENGTH(cast(n5 as text)), 1) AS int
-                )
-            ) % 2 = 0 as n5compatSingle,
-            1 - (
-                CAST (
-                    SUBSTR(cast(n6 as text), LENGTH(cast(n6 as text)) -1, 1) AS int
-                ) + CAST (
-                    SUBSTR(cast(n6 as text), LENGTH(cast(n6 as text)), 1) AS int
-                )
-            ) % 2 = 0 as n6CompatDouble,
-            (
-                CAST (
-                    SUBSTR(cast(n6 as text), LENGTH(cast(n6 as text)) -1, 1) AS int
-                ) + CAST (
-                    SUBSTR(cast(n6 as text), LENGTH(cast(n6 as text)), 1) AS int
-                )
-            ) % 2 = 0 as n6compatSingle,
-            1 - (
-                CAST (
-                    SUBSTR(cast(n7 as text), LENGTH(cast(n7 as text)) -1, 1) AS int
-                ) + CAST (
-                    SUBSTR(cast(n7 as text), LENGTH(cast(n7 as text)), 1) AS int
-                )
-            ) % 2 = 0 as n7CompatDouble,
-            (
-                CAST (
-                    SUBSTR(cast(n7 as text), LENGTH(cast(n7 as text)) -1, 1) AS int
-                ) + CAST (
-                    SUBSTR(cast(n7 as text), LENGTH(cast(n7 as text)), 1) AS int
-                )
-            ) % 2 = 0 as n7compatSingle,
-            1 - (
-                CAST (
-                    SUBSTR(cast(n8 as text), LENGTH(cast(n8 as text)) -1, 1) AS int
-                ) + CAST (
-                    SUBSTR(cast(n8 as text), LENGTH(cast(n8 as text)), 1) AS int
-                )
-            ) % 2 = 0 as n8CompatDouble,
-            (
-                CAST (
-                    SUBSTR(cast(n8 as text), LENGTH(cast(n8 as text)) -1, 1) AS int
-                ) + CAST (
-                    SUBSTR(cast(n8 as text), LENGTH(cast(n8 as text)), 1) AS int
-                )
-            ) % 2 = 0 as n8compatSingle
-        from(
-                SELECT
-                    --两面总和查找
-                    *,
-                    1 - sum % 2 AS sumDoble,
-                    sum % 2 AS sumSingle,
-                    sum > 84 AS sumBig,
-                    sum <= 84 AS sumSmall,
-                    CAST (SUBSTR(sumText, LENGTH(sumText)) AS int) >= 5 AS sumTailBig
-                FROM
-                    (
-                        SELECT
-                            *
-                        FROM
-                            (
-                                SELECT
-                                    E1.i AS n1,
-                                    E2.i AS n2,
-                                    E3.i AS n3,
-                                    E4.i AS n4,
-                                    E5.i AS n5,
-                                    E6.i AS n6,
-                                    E7.i AS n7,
-                                    E8.i AS n8,
-                                    (
-                                        E1.i + E2.i + + E3.i + + E4.i + + E5.i + + E6.i + + E7.i + E8.i
-                                    ) AS sum,
-                                    CAST (
-                                        (
-                                            E1.i + E2.i + + E3.i + + E4.i + + E5.i + + E6.i + + E7.i + E8.i
-                                        ) AS text
-                                    ) AS sumText
-                                FROM
-                                    Elements_GDKLSF AS E1,
-                                    Elements_GDKLSF AS E2,
-                                    Elements_GDKLSF AS E3,
-                                    Elements_GDKLSF AS E4,
-                                    Elements_GDKLSF AS E5,
-                                    Elements_GDKLSF AS E6,
-                                    Elements_GDKLSF AS E7,
-                                    Elements_GDKLSF AS E8
-                                WHERE
-                                    E2.i NOT IN (E1.i)
-                                    AND E3.i NOT IN (E1.i, E2.i)
-                                    AND E4.i NOT IN (E1.i, E2.i, E3.i)
-                                    AND E5.i NOT IN (E1.i, E2.i, E3.i, E4.i)
-                                    AND E6.i NOT IN (E1.i, E2.i, E3.i, E4.i, E5.i)
-                                    AND E7.i NOT IN (E1.i, E2.i, E3.i, E4.i, E5.i, E6.i)
-                                    AND E8.i NOT IN (
-                                        E1.i,
-                                        E2.i,
-                                        E3.i,
-                                        E4.i,
-                                        E5.i,
-                                        E6.i,
-                                        E7.i
-                                    )
-                            )
-                    )
-            )
+	(
+SELECT
+
+	*,
+	1 - sum % 2 AS sumDoble,
+	sum % 2 AS sumSingle,
+	sum > 84 AS sumBig,
+	sum <= 84 AS sumSmall,
+	CAST ( SUBSTR( sumText, LENGTH( sumText )) AS int ) >= 5 AS sumTailBig 
+FROM
+	(
+SELECT
+	* 
+FROM
+	(
+SELECT
+	E1.i AS n1,
+	E2.i AS n2,
+	E3.i AS n3,
+	E4.i AS n4,
+	E5.i AS n5,
+	E6.i AS n6,
+	E7.i AS n7,
+	E8.i AS n8,
+	(
+	E1.i + E2.i + + E3.i + + E4.i + + E5.i + + E6.i + + E7.i + E8.i 
+	) AS sum,
+	CAST (
+	(
+	E1.i + E2.i + + E3.i + + E4.i + + E5.i + + E6.i + + E7.i + E8.i 
+	) AS text 
+	) AS sumText 
+FROM
+	Elements AS E1,
+	Elements AS E2,
+	Elements AS E3,
+	Elements AS E4,
+	Elements AS E5,
+	Elements AS E6,
+	Elements AS E7,
+	Elements AS E8 
+WHERE
+	E2.i NOT IN ( E1.i ) 
+	AND E3.i NOT IN ( E1.i, E2.i ) 
+	AND E4.i NOT IN ( E1.i, E2.i, E3.i ) 
+	AND E5.i NOT IN ( E1.i, E2.i, E3.i, E4.i ) 
+	AND E6.i NOT IN ( E1.i, E2.i, E3.i, E4.i, E5.i ) 
+	AND E7.i NOT IN ( E1.i, E2.i, E3.i, E4.i, E5.i, E6.i ) 
+	AND E8.i NOT IN (
+	E1.i,
+	E2.i,
+	E3.i,
+	E4.i,
+	E5.i,
+	E6.i,
+	E7.i 
+	) 
+	) 
+	) 
+	) 
     )
+    '+where+"\n limit 5";
 
-	  limit 10
-		';
+		trace(createPerMutationQ);
 
-		// trace(createPerMutationQ);
+        var rs = cnr.request(createPerMutationQ);
+
+				var len = rs.length;
+trace(len);
+
+if(len!=0){
+
+    for( r in rs){
+        trace(r);
+    }
+}
+                return;
 		MainLoop.addThread(function() {
 			var m1 = new Mutex();
 
@@ -453,3 +281,4 @@ FROM
 			}
 		});
 	}
+}

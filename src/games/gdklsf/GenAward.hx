@@ -8,7 +8,7 @@ import haxe.MainLoop;
  * 生成中奖概率列表清单的全排列
  */
 class GenAward {
-	public static function gen(callBack:sys.db.Connection->sys.db.ResultSet->Void) {
+	public static function gen(total:UInt,callBack:sys.db.Connection->sys.db.ResultSet->Void) {
 		var a:Float = 0;
 
 		var cnx = Sqlite.open(":memory:");
@@ -34,7 +34,7 @@ class GenAward {
 
 			var l = rs.length;
 		}
-		var total = 6;
+		
 		var a = 'select \n';
 
 		var b = '';
@@ -69,7 +69,9 @@ class GenAward {
 				// trace("now!");
 
                 callBack(cnx,rs);//回传。
-			}
+			}else{
+                trace("被锁！");
+            }
 		});
 	}
 }
