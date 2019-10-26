@@ -58,6 +58,11 @@ class TestSqlite {
 			arr.push(item);
 		}
 
+
+	
+
+		trace("1-8球"+arr.length);
+
 		for (e in arr) {
 			trace("-----------------------");
 

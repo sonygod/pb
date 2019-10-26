@@ -196,10 +196,10 @@ FROM
 SELECT
 
 	*,
-	1 - sum % 2 AS sumDoble,
-	sum % 2 AS sumSingle,
+	1 - sum % 2 AS sumDouble,
+	
 	sum > 84 AS sumBig,
-	sum <= 84 AS sumSmall,
+	
 	CAST ( SUBSTR( sumText, LENGTH( sumText )) AS int ) >= 5 AS sumTailBig 
 FROM
 	(
@@ -313,12 +313,16 @@ WHERE
 		var data2:Array<Dynamic> = data;
 
 		var p:Float = 0;
+		var total:Float = 0;
+		var pait:Float = 0;
 		for (e in data2) {
-            trace(arr2[e.index0][e.index1]);
+			trace(arr2[e.index0][e.index1]);
 			p += arr2[e.index0][e.index1].persent;
+			total += arr2[e.index0][e.index1].total;
+			pait += arr2[e.index0][e.index1].pait;
 		}
 
-		trace("概率p=" + p / data2.length);
+		trace('概率p=  ${p / data2.length}  总投注=${total}  玩家赢=$pait 中奖号码${data2[data2.length - 1].result}');
 	}
 
 	/**
@@ -330,40 +334,61 @@ WHERE
 		var whereArray = [];
 		// for (i in 0...arr3.length - 1) {
 
-		for (e in arr3) {
-			// trace(e);
-			var where = sql + " ";
-			// var i = e.index - 1;
-			var item = e;
+		if (index < 8) {
+			for (e in arr3) {
+				// trace(e);
+				var where = sql + " ";
+				// var i = e.index - 1;
+				var item = e;
 
-			where += item.n1 == 1 ? '\n n${index + 1}Big=1 and ' : ' n${index + 1}Big=0 and';
-			where += item.n2 == 1 ? ' n${index + 1}Double=1 and ' : ' n${index + 1}Double=0 and';
-			where += item.n3 == 1 ? ' n${index + 1}TailBig=1 and ' : ' n${index + 1}TailBig=0 and';
-			where += item.n4 == 1 ? ' n${index + 1}CompatDouble=1 and ' : ' n${index + 1}CompatDouble=0 and';
+				where += item.n1 == 1 ? '\n n${index + 1}Big=1 and ' : ' n${index + 1}Big=0 and';
+				where += item.n2 == 1 ? ' n${index + 1}Double=1 and ' : ' n${index + 1}Double=0 and';
+				where += item.n3 == 1 ? ' n${index + 1}TailBig=1 and ' : ' n${index + 1}TailBig=0 and';
+				where += item.n4 == 1 ? ' n${index + 1}CompatDouble=1 and ' : ' n${index + 1}CompatDouble=0 and';
 
-			if (item.n5 != null && index < 4) {
-				where += item.n5 == 1 ? '   n${index + 1}Long=1 and ' : '  n${index + 1}Long=0 and';
+				if (item.n5 != null && index < 4) {
+					where += item.n5 == 1 ? '   n${index + 1}Long=1 and ' : '  n${index + 1}Long=0 and';
+				}
+
+				var str = where;
+
+				where = str.substring(0, str.length - 4);
+				whereArray.push(where);
+				// trace(where);
 			}
+		} else {
+			// 计算sum
+			for (e in arr3) {
+				// trace(e);
+				var where = sql + " ";
+				// var i = e.index - 1;
+				var item = e;
 
-			var str = where;
+				where += item.n1 == 1 ? '\n sumBig=1 and ' : ' sumBig=0 and';
+				where += item.n2 == 1 ? ' sumDouble=1 and ' : ' sumDouble=0 and';
+				where += item.n3 == 1 ? ' sumTailBig=1 and ' : ' sumTailBig=0 and';
 
-			where = str.substring(0, str.length - 4);
-			whereArray.push(where);
-			// trace(where);
+				var str = where;
+
+				where = str.substring(0, str.length - 4);
+				whereArray.push(where);
+			}
 		}
 
 		GenResult.genFromWhereArray(whereArray, function(result) {
+			data.value.push({index0: index, index1: result.index});
 			index++;
-
-			if (index < 8) {
-				sql = result.sql + " and ";
+            sql = result.sql + " and ";
+			if (index < 9) {
+				
 				// trace(sql);
-				data.value.push({index0: index, index1: result.index});
+
 				genHitTest(arr2, index, sql, data);
 			} else {
 				trace("查找完成" + result.sql);
-				data.value.push({index0: index, index1: result.index});
+
 				trace(result.result);
+				data.value[data.value.length - 1].result = Std.string(result.result);
 			}
 		});
 	}
