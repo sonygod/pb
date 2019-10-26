@@ -276,7 +276,7 @@ WHERE
 		});
 	}
 
-	public static function genFromWhereArray(whereArray:Array<String>, callBack:sys.db.Connection->sys.db.ResultSet->Void) {
+	public static function genFromWhereArray(whereArray:Array<String>, callBack:Dynamic->Void) {
 		var i = 0;
 		var loop = true;
 
@@ -291,10 +291,56 @@ WHERE
 					for (r in b) {
 						trace(r);
 					}
+					if (callBack != null) {
+						callBack({sql: whereArray[i], index: i});
+					}
 				}
 
 				i++;
 			});
 		}
+	}
+
+	/**
+	 * 这里已经是8个球 各种购买的数据了。
+	 * @param arr2
+	 */
+	public static function genHitTest(arr2:Array<Array<BallScoreType>>, index:Int = 0, sql:String = "") {
+		var arr3 = arr2[index];
+		var whereArray = [];
+		// for (i in 0...arr3.length - 1) {
+
+		for (e in arr3) {
+			// trace(e);
+			var where = sql + " ";
+			// var i = e.index - 1;
+			var item = e;
+
+			where += item.n1 == 1 ? '\n n${index + 1}Big=1 and ' : ' n${index + 1}Big=0 and';
+			where += item.n2 == 1 ? ' n${index + 1}Double=1 and ' : ' n${index + 1}Double=0 and';
+			where += item.n3 == 1 ? ' n${index + 1}TailBig=1 and ' : ' n${index + 1}TailBig=0 and';
+			where += item.n4 == 1 ? ' n${index + 1}CompatDouble=1 and ' : ' n${index + 1}CompatDouble=0 and';
+
+			if (item.n5 != null && index < 4) {
+				where += item.n5 == 1 ? '   n${index + 1}Long=1 and ' : '  n${index + 1}Long=0 and';
+			}
+
+			var str = where;
+
+			where = str.substring(0, str.length - 4);
+			whereArray.push(where);
+			//trace(where);
+		}
+
+		GenResult.genFromWhereArray(whereArray, function(result) {
+			index++;
+			if (index < 8) {
+				sql += result.sql + " and ";
+				trace(sql);
+				genHitTest(arr2, index, sql);
+			} else {
+				trace("查找完成" );
+			}
+		});
 	}
 }

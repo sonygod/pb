@@ -69,7 +69,7 @@ class TestSqlite {
 		 */
 		var arr2 = []; // 计算总投注
 
-		var whereArray = [];
+		
 		var extra = 0;
 		GenAward.gen(5, function(a, b) {
 			trace(b.length);
@@ -150,33 +150,7 @@ class TestSqlite {
 				index++;
 			}
 
-			var arr3 = arr2[0];
-
-			// for (i in 0...arr3.length - 1) {
-
-			for (e in arr3) {
-				// trace(e);
-				var where = '';
-				// var i = e.index - 1;
-				var item = e;
-
-				where += item.n1 == 1 ? '\n n1Big=1 and ' : ' n1Big=0 and';
-				where += item.n2 == 1 ? ' n1Double=1 and ' : ' n1Double=0 and';
-				where += item.n3 == 1 ? ' n1TailBig=1 and ' : ' n1TailBig=0 and';
-				where += item.n4 == 1 ? ' n1CompatDouble=1 and ' : ' n1CompatDouble=0 and';
-
-				if (item.n5 != null) {
-					where += item.n5 == 1 ? '   n1Long=1 and ' : '  n1Long=0 and';
-				}
-
-				var str = where;
-
-				where = str.substring(0, str.length - 4);
-				whereArray.push(where);
-				trace(where);
-			}
-
-			GenResult.genFromWhereArray(whereArray, null);
+		    GenResult.genHitTest(arr2);
 		});
 	}
 }
