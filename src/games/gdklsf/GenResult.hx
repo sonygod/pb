@@ -38,6 +38,10 @@ class GenResult {
 			INSERT INTO "Elements" VALUES (4);
 			INSERT INTO "Elements" VALUES (5);
 			INSERT INTO "Elements" VALUES (6);
+            INSERT INTO "Elements" VALUES (7);
+            INSERT INTO "Elements" VALUES (8);
+            INSERT INTO "Elements" VALUES (9);
+            INSERT INTO "Elements" VALUES (10);
 			------------------------------------------
 			INSERT INTO "Elements" VALUES (11);
 			INSERT INTO "Elements" VALUES (12);
@@ -50,75 +54,7 @@ class GenResult {
 			INSERT INTO "Elements" VALUES (19);
 			------------------------------------------
 			INSERT INTO "Elements" VALUES (20);
-			INSERT INTO "Elements" VALUES (21);
-			INSERT INTO "Elements" VALUES (22);
-			INSERT INTO "Elements" VALUES (23);
-			INSERT INTO "Elements" VALUES (24);
-			INSERT INTO "Elements" VALUES (25);
-			INSERT INTO "Elements" VALUES (26);
-			INSERT INTO "Elements" VALUES (27);
-			INSERT INTO "Elements" VALUES (28);
-			INSERT INTO "Elements" VALUES (29);
-			------------------------------------------
-			INSERT INTO "Elements" VALUES (30);
-			INSERT INTO "Elements" VALUES (31);
-			INSERT INTO "Elements" VALUES (32);
-			INSERT INTO "Elements" VALUES (33);
-			INSERT INTO "Elements" VALUES (34);
-			INSERT INTO "Elements" VALUES (35);
-			INSERT INTO "Elements" VALUES (36);
-			INSERT INTO "Elements" VALUES (37);
-			INSERT INTO "Elements" VALUES (38);
-			INSERT INTO "Elements" VALUES (39);
-			-----------------------------------------
-			INSERT INTO "Elements" VALUES (40);
-			INSERT INTO "Elements" VALUES (41);
-			INSERT INTO "Elements" VALUES (42);
-			INSERT INTO "Elements" VALUES (43);
-			INSERT INTO "Elements" VALUES (44);
-			INSERT INTO "Elements" VALUES (45);
-			INSERT INTO "Elements" VALUES (46);
-			INSERT INTO "Elements" VALUES (47);
-			INSERT INTO "Elements" VALUES (48);
-			INSERT INTO "Elements" VALUES (49);
-			------------------------------------------
-			INSERT INTO "Elements" VALUES (50);
-			INSERT INTO "Elements" VALUES (51);
-			INSERT INTO "Elements" VALUES (52);
-			INSERT INTO "Elements" VALUES (53);
-			INSERT INTO "Elements" VALUES (54);
-			INSERT INTO "Elements" VALUES (55);
-			INSERT INTO "Elements" VALUES (56);
-			INSERT INTO "Elements" VALUES (57);
-			INSERT INTO "Elements" VALUES (58);
-			------------------------------------------
-			INSERT INTO "Elements" VALUES (61);
-			INSERT INTO "Elements" VALUES (62);
-			INSERT INTO "Elements" VALUES (63);
-			INSERT INTO "Elements" VALUES (64);
-			INSERT INTO "Elements" VALUES (65);
-			INSERT INTO "Elements" VALUES (66);
-			INSERT INTO "Elements" VALUES (67);
-			INSERT INTO "Elements" VALUES (68);
-			-----------------------------------------
-			INSERT INTO "Elements" VALUES (71);
-			INSERT INTO "Elements" VALUES (72);
-			INSERT INTO "Elements" VALUES (73);
-			INSERT INTO "Elements" VALUES (74);
-			INSERT INTO "Elements" VALUES (75);
-			INSERT INTO "Elements" VALUES (76);
-			INSERT INTO "Elements" VALUES (77);
-			INSERT INTO "Elements" VALUES (78);
-			------------------------------------------
-			INSERT INTO "Elements" VALUES (81);
-			INSERT INTO "Elements" VALUES (82);
-			INSERT INTO "Elements" VALUES (83);
-			INSERT INTO "Elements" VALUES (84);
-			INSERT INTO "Elements" VALUES (85);
-			INSERT INTO "Elements" VALUES (86);
-			INSERT INTO "Elements" VALUES (87);
-			INSERT INTO "Elements" VALUES (88);
-			---------------------------------------------
+			
 			';
 
 		var arr = createTableArr.split(';');
@@ -387,7 +323,10 @@ WHERE
 				trace("查找完成" + result.sql);
 
 				trace(result.result);
+
+                trace(sql.substring(0,sql.length-4));
 				data.value[data.value.length - 1].result = Std.string(result.result);
+                data.value[data.value.length - 1].sql=sql.substring(0,sql.length-4); 
 			}
 		});
 	}
