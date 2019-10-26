@@ -176,26 +176,7 @@ class TestSqlite {
 				trace(where);
 			}
 
-			var i = 0;
-			var loop = true;
-
-			while (i < whereArray.length && loop) {
-				GenResult.gen("where " + whereArray[i], function(a, b) {
-					var len = b.length;
-
-					trace('得到结果是 + $len index=$i  ${whereArray[i]}');
-					if (len > 0) {
-						loop = false;
-
-						for (r in b) {
-							trace(r);
-						}
-					}
-
-					i++;
-				});
-				
-			}
+			GenResult.genFromWhereArray(whereArray, null);
 		});
 	}
 }

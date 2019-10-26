@@ -276,9 +276,25 @@ WHERE
 		});
 	}
 
-	public static function genFromArray(array:Array<String>, callBack:sys.db.Connection->sys.db.ResultSet->Void) {
-		for (e in array) {
-			gen("where " + e, callBack);
+	public static function genFromWhereArray(whereArray:Array<String>, callBack:sys.db.Connection->sys.db.ResultSet->Void) {
+		var i = 0;
+		var loop = true;
+
+		while (i < whereArray.length && loop) {
+			gen("where " + whereArray[i], function(a, b) {
+				var len = b.length;
+
+				if (len > 0) {
+					trace('得到结果是 + $len index=$i  ${whereArray[i]}');
+					loop = false;
+
+					for (r in b) {
+						trace(r);
+					}
+				}
+
+				i++;
+			});
 		}
 	}
 }
