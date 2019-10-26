@@ -285,16 +285,16 @@ WHERE
 				var len = b.length;
 
 				if (len > 0) {
-					 trace('得到结果是 + $len index=$i  ${whereArray[i]}');
+					trace('得到结果是 + $len index=$i  ${whereArray[i]}');
 					loop = false;
-              
-                      var result={};
+
+					var result = {};
 					for (r in b) {
-						//trace(r);
-                        result=r;
+						// trace(r);
+						result = r;
 					}
 					if (callBack != null) {
-						callBack({sql: whereArray[i], index: i,result:result});
+						callBack({sql: whereArray[i], index: i, result: result});
 					}
 				}
 
@@ -338,12 +338,12 @@ WHERE
 			index++;
 			if (index < 8) {
 				sql = result.sql + " and ";
-				//trace(sql);
+				// trace(sql);
 				genHitTest(arr2, index, sql);
 			} else {
-				trace("查找完成" +result.sql);
+				trace("查找完成" + result.sql);
 
-                trace(result.result);
+				trace(result.result);
 			}
 		});
 	}
