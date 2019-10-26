@@ -285,14 +285,16 @@ WHERE
 				var len = b.length;
 
 				if (len > 0) {
-					trace('得到结果是 + $len index=$i  ${whereArray[i]}');
+					 trace('得到结果是 + $len index=$i  ${whereArray[i]}');
 					loop = false;
-
+              
+                      var result={};
 					for (r in b) {
-						trace(r);
+						//trace(r);
+                        result=r;
 					}
 					if (callBack != null) {
-						callBack({sql: whereArray[i], index: i});
+						callBack({sql: whereArray[i], index: i,result:result});
 					}
 				}
 
@@ -329,17 +331,17 @@ WHERE
 
 			where = str.substring(0, str.length - 4);
 			whereArray.push(where);
-			//trace(where);
+			// trace(where);
 		}
 
 		GenResult.genFromWhereArray(whereArray, function(result) {
 			index++;
 			if (index < 8) {
-				sql += result.sql + " and ";
-				trace(sql);
+				sql = result.sql + " and ";
+				//trace(sql);
 				genHitTest(arr2, index, sql);
 			} else {
-				trace("查找完成" );
+				trace("查找完成" +result.sql);
 			}
 		});
 	}
