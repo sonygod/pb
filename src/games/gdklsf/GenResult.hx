@@ -181,7 +181,7 @@ class GenResult {
 	(
 	CAST ( SUBSTR( n3, 0, LENGTH( n3 )) AS int ) + CAST ( SUBSTR( n3, LENGTH( n3 )) AS int )) % 2 = 0 AS n3CompatDouble,
 	(
-	CAST ( SUBSTR( n4, 0, LENGTH( n4 )) AS int ) + CAST ( SUBSTR( n4, LENGTH( n1 )) AS int )) % 2 = 0 AS n4CompatDouble,
+	CAST ( SUBSTR( n4, 0, LENGTH( n4 )) AS int ) + CAST ( SUBSTR( n4, LENGTH( n4 )) AS int )) % 2 = 0 AS n4CompatDouble,
 	(
 	CAST ( SUBSTR( n5, 0, LENGTH( n5 )) AS int ) + CAST ( SUBSTR( n5, LENGTH( n5 )) AS int )) % 2 = 0 AS n5CompatDouble,
 	(
@@ -342,6 +342,8 @@ WHERE
 				genHitTest(arr2, index, sql);
 			} else {
 				trace("查找完成" +result.sql);
+
+                trace(result.result);
 			}
 		});
 	}
