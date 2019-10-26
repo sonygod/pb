@@ -378,9 +378,8 @@ WHERE
 		GenResult.genFromWhereArray(whereArray, function(result) {
 			data.value.push({index0: index, index1: result.index});
 			index++;
-            sql = result.sql + " and ";
+			sql = result.sql + " and ";
 			if (index < 9) {
-				
 				// trace(sql);
 
 				genHitTest(arr2, index, sql, data);
