@@ -149,8 +149,8 @@ class TestSqlite {
 				});
 				index++;
 			}
-
-		    GenResult.genHitTest(arr2);
+           
+		    GenResult.genResult(arr2);
 		});
 	}
 }

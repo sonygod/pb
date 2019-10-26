@@ -4,6 +4,7 @@ import KLSF.BallScoreType;
 import sys.db.Sqlite;
 import sys.thread.Mutex;
 import haxe.MainLoop;
+import tink.CoreApi;
 
 class GenResult {
 	static var m1:Mutex;
@@ -303,11 +304,28 @@ WHERE
 		}
 	}
 
+	public static function genResult(arr2:Array<Array<BallScoreType>>) {
+		var data:Ref<Array<Dynamic>> = [];
+		genHitTest(arr2, 0, "", data.value);
+
+		trace('data=\n' + data);
+
+		var data2:Array<Dynamic> = data;
+
+		var p:Float = 0;
+		for (e in data2) {
+            trace(arr2[e.index0][e.index1]);
+			p += arr2[e.index0][e.index1].persent;
+		}
+
+		trace("概率p=" + p / data2.length);
+	}
+
 	/**
 	 * 这里已经是8个球 各种购买的数据了。
 	 * @param arr2
 	 */
-	public static function genHitTest(arr2:Array<Array<BallScoreType>>, index:Int = 0, sql:String = "") {
+	static function genHitTest(arr2:Array<Array<BallScoreType>>, index:Int = 0, sql:String = "", data:Ref<Array<Dynamic>>) {
 		var arr3 = arr2[index];
 		var whereArray = [];
 		// for (i in 0...arr3.length - 1) {
@@ -336,13 +354,15 @@ WHERE
 
 		GenResult.genFromWhereArray(whereArray, function(result) {
 			index++;
+
 			if (index < 8) {
 				sql = result.sql + " and ";
 				// trace(sql);
-				genHitTest(arr2, index, sql);
+				data.value.push({index0: index, index1: result.index});
+				genHitTest(arr2, index, sql, data);
 			} else {
 				trace("查找完成" + result.sql);
-
+				data.value.push({index0: index, index1: result.index});
 				trace(result.result);
 			}
 		});
