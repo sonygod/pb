@@ -31,7 +31,7 @@ class CustomTrace {
 class TestSqlite {
 	public static function main() {
 		CustomTrace.init();
-
+		GenResult.genDatabase();
 		var arr = [];
 
 		for (i in 0...9) {
@@ -69,6 +69,7 @@ class TestSqlite {
 		 */
 		var arr2 = []; // 计算总投注
 
+		var whereArray = [];
 		var extra = 0;
 		GenAward.gen(5, function(a, b) {
 			trace(b.length);
@@ -131,6 +132,9 @@ class TestSqlite {
 							item.pait += currentBall.dragen * (extra + currentBall.odds);
 						}
 						item.n5 = r.n5;
+						item.types = 5;
+					} else {
+						item.types = 4;
 					}
 
 					item.pait = Math.round(item.pait * 100) / 100; // Math.round((item.pait*100)/100);
@@ -146,63 +150,52 @@ class TestSqlite {
 				index++;
 			}
 
-			var arr3 = [];
-			for (e in arr2) {
-				// trace("----------------------------------------------------------------");
-				// trace(e);
+			var arr3 = arr2[0];
 
-				arr3.push(e[0]);
-			}
-
-			trace(arr3);
-
-			var persent4:Float = 0;
-
-			var earnTotal:Float = 0;
+			// for (i in 0...arr3.length - 1) {
 
 			for (e in arr3) {
-				persent4 += e.persent;
-				earnTotal += e.total;
-			}
-			var p1 = persent4 / arr3.length;
-			var p2 = 1 - p1;
+				// trace(e);
+				var where = '';
+				// var i = e.index - 1;
+				var item = e;
 
-			trace('总赔百分比 $p1  平台赚百分比 $p2 投注总额 $earnTotal 赚 ${earnTotal * p2}');
+				where += item.n1 == 1 ? '\n n1Big=1 and ' : ' n1Big=0 and';
+				where += item.n2 == 1 ? ' n1Double=1 and ' : ' n1Double=0 and';
+				where += item.n3 == 1 ? ' n1TailBig=1 and ' : ' n1TailBig=0 and';
+				where += item.n4 == 1 ? ' n1CompatDouble=1 and ' : ' n1CompatDouble=0 and';
 
-			trace("开始生成号码");
-
-			var where = '\nwhere\n';
-
-			for (i in 0...arr3.length - 1) {
-				var item = arr3[i];
-
-				where += item.n1 == 1 ? '\n n${i + 1}Big=1 and ' : ' n${i + 1}Big=0 and ';
-				where += item.n2 == 1 ? ' n${i + 1}Double=1 and ' : ' n${i + 1}Double=0 and ';
-				where += item.n3 == 1 ? ' n${i + 1}TailBig=1 and ' : ' n${i + 1}TailBig=0 and ';
-				//where += item.n4 == 1 ? ' n${i + 1}CompatDouble=1 and ' : ' n${i + 1}CompatDouble=0 and \n';
-
-				
-				if (item.n5 != null &&i<4) {
-					where += item.n4 == 1 ? 'n${i + 1}Long=1 and ' : 'n${i + 1}Long=0 and';
+				if (item.n5 != null) {
+					where += item.n5 == 1 ? '   n1Long=1 and ' : '  n1Long=0 and';
 				}
+
+				var str = where;
+
+				where = str.substring(0, str.length - 4);
+				whereArray.push(where);
+				trace(where);
 			}
 
-			var str=where;
+			var i = 0;
+			var loop = true;
 
-			where=str.substring(0,str.length-5);
+			while (i < whereArray.length && loop) {
+				GenResult.gen("where " + whereArray[i], function(a, b) {
+					var len = b.length;
 
-           GenResult.gen(where,function (a,b){
+					trace('得到结果是 + $len index=$i  ${whereArray[i]}');
+					if (len > 0) {
+						loop = false;
 
-                   var len=b.length;
+						for (r in b) {
+							trace(r);
+						}
+					}
 
-				   trace(len);
-trace("得到结果是");
-				   for(r in b){
-					   trace(r);
-				   }
-
-		   });
-			
+					i++;
+				});
+				
+			}
 		});
 	}
 }

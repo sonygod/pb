@@ -6,11 +6,13 @@ import sys.thread.Mutex;
 import haxe.MainLoop;
 
 class GenResult {
-	public static function gen(where:String,callBack:sys.db.Connection->sys.db.ResultSet->Void) {
+	static var m1:Mutex;
+	static var cnr:sys.db.Connection;
 
-       
+	public static function genDatabase() {
+		m1 = new Mutex();
 		//----------------------------------------------------开始创建
-		var cnr = Sqlite.open(":memory:");
+		cnr = Sqlite.open(":memory:");
 
 		cnr.request("PRAGMA synchronous = OFF");
 		cnr.request("PRAGMA locking_mode=EXCLUSIVE"); // 不需要多个
@@ -124,18 +126,15 @@ class GenResult {
 			var rs = cnr.request(q);
 			var len = rs.length;
 		}
+		var q = "select * from Elements ";
 
-     var q="select * from Elements ";
+		var rs = cnr.request(q);
+		var l = rs.length;
 
-    var rs = cnr.request(q);
+		trace("初始化数据库完毕");
+	}
 
-    for(r in rs){
-        trace(r.i);
-    }
-		trace("finish");
-
-		
-
+	public static function gen(where:String, callBack:sys.db.Connection->sys.db.ResultSet->Void) {
 		var createPerMutationQ = '
         select n1,n2,n3,n4,n5,n6,n7,n8 from(
 		SELECT
@@ -178,9 +177,9 @@ class GenResult {
 	(
 	CAST ( SUBSTR( n1, 0, LENGTH( n1 )) AS int ) + CAST ( SUBSTR( n1, LENGTH( n1 )) AS int )) % 2 = 0 AS n1CompatDouble,
 	(
-	CAST ( SUBSTR( n1, 0, LENGTH( n2 )) AS int ) + CAST ( SUBSTR( n2, LENGTH( n2 )) AS int )) % 2 = 0 AS n2CompatDouble,
+	CAST ( SUBSTR( n2, 0, LENGTH( n2 )) AS int ) + CAST ( SUBSTR( n2, LENGTH( n2 )) AS int )) % 2 = 0 AS n2CompatDouble,
 	(
-	CAST ( SUBSTR( n1, 0, LENGTH( n3 )) AS int ) + CAST ( SUBSTR( n3, LENGTH( n3 )) AS int )) % 2 = 0 AS n3CompatDouble,
+	CAST ( SUBSTR( n3, 0, LENGTH( n3 )) AS int ) + CAST ( SUBSTR( n3, LENGTH( n3 )) AS int )) % 2 = 0 AS n3CompatDouble,
 	(
 	CAST ( SUBSTR( n4, 0, LENGTH( n4 )) AS int ) + CAST ( SUBSTR( n4, LENGTH( n1 )) AS int )) % 2 = 0 AS n4CompatDouble,
 	(
@@ -253,25 +252,20 @@ WHERE
 	) 
 	) 
     )
-    '+where+"\n limit 5";
+    '
 
-		trace(createPerMutationQ);
+			+ where
+			+ "\n limit 1";
 
-        var rs = cnr.request(createPerMutationQ);
+		// trace(createPerMutationQ);
+		var rs = cnr.request(createPerMutationQ);
 
-				var len = rs.length;
-trace(len);
+		var len = rs.length;
 
-if(len!=0){
+		callBack(cnr, rs);
 
-    for( r in rs){
-        trace(r);
-    }
-}
-                return;
+		return;
 		MainLoop.addThread(function() {
-			var m1 = new Mutex();
-
 			if (m1.tryAcquire()) {
 				var rs = cnr.request(createPerMutationQ);
 
@@ -280,5 +274,11 @@ if(len!=0){
 				callBack(cnr, rs);
 			}
 		});
+	}
+
+	public static function genFromArray(array:Array<String>, callBack:sys.db.Connection->sys.db.ResultSet->Void) {
+		for (e in array) {
+			gen("where " + e, callBack);
+		}
 	}
 }

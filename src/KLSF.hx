@@ -112,6 +112,7 @@ typedef BallScoreType = {
 	@:optional var persent:Float; // 赔率
 	@:optional var total:Float; // 总投注
 	@:optional var pait:Float;//要赔付总额
+	@:optional var types:Int;//玩法种类数量
 }
 // 总和
 class SumScore {
