@@ -1,8 +1,10 @@
 import haxe.io.Bytes;
 import sys.io.File;
 import haxe.MainLoop;
+
 using tink.CoreApi;
 using Lambda;
+
 import Random;
 
 class CustomTrace {
@@ -28,31 +30,35 @@ class TestSqlite {
 
 		trace(n2 - n1);
 
-	//	File.saveBytes('./testbytes.data', b);
+		//	File.saveBytes('./testbytes.data', b);
 	}
 
 	public static function test2(b:Bytes) {
 		return Future.async(function(callBack) {
 			var index = 0;
-			var total = 128;
-			var sum = 1024 * 1024 * 1015;
+			var total = 16;
+			var sum = 16000;
 
 			var base = Std.int(sum / total);
 
 			trace('sum=$sum total=$total base=$base');
+
+			var k:Float = 0;
 			for (i in 0...total) {
 				MainLoop.addThread(function() {
 					var start = i * base;
 					var end = (i + 1) * base;
-
+					trace(' start=$start  end=$end');
 					while (start < end) {
-						b.set(start, Random.int(1, 10));
+						// b.set(start, Random.int(1, 10));
 						start++;
+						k++;
 					}
 
 					index++;
 
 					if (index == total) {
+						trace(k);
 						callBack(true);
 					}
 				});
