@@ -30,14 +30,50 @@ class CustomTrace {
 	}
 }
 
+@await
 class TestSqlite {
-	public static function main() {
+	@async public static function main() {
 		CustomTrace.init();
-		trace("f");
-		var b = Bytes.alloc(1024 * 1024*1024);
-		//trace("f");
 
-		File.saveBytes("I:/testbyte.data",b);
+		trace("开始计算");
+		var n1 = Date.now().getTime();
+		var b = Bytes.alloc(1024 * 1024 * 1015);
+		var result = @await test2(b);
+
+		var n2 = Date.now().getTime();
+
+		trace(n2 - n1);
+
+		File.saveBytes('./testbytes.data', b);
+	}
+
+	public static function test2(b:Bytes) {
+		return Future.async(function(callBack) {
+			var index = 0;
+			var total = 16;
+			var sum = 1024 * 1024 * 1015;
+
+			var base = Std.int(sum / total);
+
+			trace('sum=$sum total=$total base=$base');
+			for (i in 0...total) {
+				MainLoop.addThread(function() {
+					var start = i * base;
+					var end = (i + 1) * base;
+
+					while (start < end) {
+						b.set(start, Random.int(1, 10));
+						start++;
+					}
+
+					index++;
+
+					if (index == 8) {
+						callBack(true);
+					}
+				});
+			}
+		});
 	}
 
 	public static function main2() {

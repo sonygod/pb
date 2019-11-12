@@ -7,6 +7,7 @@
 
 HX_DEFINE_STACK_FRAME(_hx_pos_f17acceeafd9582a_30_new,"sys.thread.Lock","new",0x586e3f40,"sys.thread.Lock.new","C:\\HaxeToolkit\\haxe\\std/cpp/_std/sys/thread/Lock.hx",30,0x9abc4176)
 HX_LOCAL_STACK_FRAME(_hx_pos_f17acceeafd9582a_34_wait,"sys.thread.Lock","wait",0x0df8ef95,"sys.thread.Lock.wait","C:\\HaxeToolkit\\haxe\\std/cpp/_std/sys/thread/Lock.hx",34,0x9abc4176)
+HX_LOCAL_STACK_FRAME(_hx_pos_f17acceeafd9582a_38_release,"sys.thread.Lock","release",0xd398e4a7,"sys.thread.Lock.release","C:\\HaxeToolkit\\haxe\\std/cpp/_std/sys/thread/Lock.hx",38,0x9abc4176)
 namespace sys{
 namespace thread{
 
@@ -40,6 +41,14 @@ HXDLIN(  34)		return  ::__hxcpp_lock_wait(this->l,timeout);
 
 HX_DEFINE_DYNAMIC_FUNC1(Lock_obj,wait,return )
 
+void Lock_obj::release(){
+            	HX_STACKFRAME(&_hx_pos_f17acceeafd9582a_38_release)
+HXDLIN(  38)		 ::__hxcpp_lock_release(this->l);
+            	}
+
+
+HX_DEFINE_DYNAMIC_FUNC0(Lock_obj,release,(void))
+
 
 Lock_obj::Lock_obj()
 {
@@ -65,6 +74,9 @@ hx::Val Lock_obj::__Field(const ::String &inName,hx::PropertyAccess inCallProp)
 		break;
 	case 4:
 		if (HX_FIELD_EQ(inName,"wait") ) { return hx::Val( wait_dyn() ); }
+		break;
+	case 7:
+		if (HX_FIELD_EQ(inName,"release") ) { return hx::Val( release_dyn() ); }
 	}
 	return super::__Field(inName,inCallProp);
 }
@@ -95,6 +107,7 @@ static hx::StaticInfo *Lock_obj_sStaticStorageInfo = 0;
 static ::String Lock_obj_sMemberFields[] = {
 	HX_("l",6c,00,00,00),
 	HX_("wait",75,5a,f2,4e),
+	HX_("release",c7,85,ed,58),
 	::String(null()) };
 
 hx::Class Lock_obj::__mClass;

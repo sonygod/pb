@@ -56,6 +56,12 @@ class HXCPP_CLASS_ATTRIBUTES MainLoop_obj : public hx::Object
 		static bool hasEvents();
 		static ::Dynamic hasEvents_dyn();
 
+		static void addThread( ::Dynamic f);
+		static ::Dynamic addThread_dyn();
+
+		static  ::haxe::MainEvent add( ::Dynamic f,hx::Null< int >  priority);
+		static ::Dynamic add_dyn();
+
 		static void sortEvents();
 		static ::Dynamic sortEvents_dyn();
 

@@ -65,6 +65,9 @@ HXDLIN(  26)		( ( ::Date)(__this) )->mSeconds =  ::__hxcpp_new_date(year,month,d
 		static ::Dynamic fromTime_dyn();
 
 		Float mSeconds;
+		Float getTime();
+		::Dynamic getTime_dyn();
+
 		virtual ::String toString();
 		::Dynamic toString_dyn();
 

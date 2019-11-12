@@ -13,6 +13,9 @@ extern "C" void __hxcpp_lib_main();
 #ifndef INCLUDED_haxe_EntryPoint
 #include <haxe/EntryPoint.h>
 #endif
+#ifndef INCLUDED_tink_core__Future_FutureObject
+#include <tink/core/_Future/FutureObject.h>
+#endif
 HX_LOCAL_STACK_FRAME(_hx_pos_fe66fde75063e1fc_1___hxcpp_main,"hxcpp","__hxcpp_main",0x10478780,"hxcpp.__hxcpp_main","?",1,0x0000003f)
 
 

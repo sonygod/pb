@@ -6,6 +6,7 @@
 #endif
 
 HX_DEFINE_STACK_FRAME(_hx_pos_c0151d669b9b886e_26_new,"Date","new",0x9aa26240,"Date.new","C:\\HaxeToolkit\\haxe\\std/cpp/_std/Date.hx",26,0x1bc6780a)
+HX_LOCAL_STACK_FRAME(_hx_pos_c0151d669b9b886e_30_getTime,"Date","getTime",0x0cac7da3,"Date.getTime","C:\\HaxeToolkit\\haxe\\std/cpp/_std/Date.hx",30,0x1bc6780a)
 HX_LOCAL_STACK_FRAME(_hx_pos_c0151d669b9b886e_94_toString,"Date","toString",0xd2a372cc,"Date.toString","C:\\HaxeToolkit\\haxe\\std/cpp/_std/Date.hx",94,0x1bc6780a)
 HX_LOCAL_STACK_FRAME(_hx_pos_c0151d669b9b886e_98_now,"Date","now",0x9aa26af6,"Date.now","C:\\HaxeToolkit\\haxe\\std/cpp/_std/Date.hx",98,0x1bc6780a)
 HX_LOCAL_STACK_FRAME(_hx_pos_c0151d669b9b886e_105_fromTime,"Date","fromTime",0x44fd3cb7,"Date.fromTime","C:\\HaxeToolkit\\haxe\\std/cpp/_std/Date.hx",105,0x1bc6780a)
@@ -29,6 +30,14 @@ Dynamic Date_obj::__Create(hx::DynamicArray inArgs)
 bool Date_obj::_hx_isInstanceOf(int inClassId) {
 	return inClassId==(int)0x00000001 || inClassId==(int)0x2d3c824e;
 }
+
+Float Date_obj::getTime(){
+            	HX_STACKFRAME(&_hx_pos_c0151d669b9b886e_30_getTime)
+HXDLIN(  30)		return (this->mSeconds * ((Float)1000.0));
+            	}
+
+
+HX_DEFINE_DYNAMIC_FUNC0(Date_obj,getTime,return )
 
 ::String Date_obj::toString(){
             	HX_STACKFRAME(&_hx_pos_c0151d669b9b886e_94_toString)
@@ -64,6 +73,9 @@ Date_obj::Date_obj()
 hx::Val Date_obj::__Field(const ::String &inName,hx::PropertyAccess inCallProp)
 {
 	switch(inName.length) {
+	case 7:
+		if (HX_FIELD_EQ(inName,"getTime") ) { return hx::Val( getTime_dyn() ); }
+		break;
 	case 8:
 		if (HX_FIELD_EQ(inName,"mSeconds") ) { return hx::Val( mSeconds ); }
 		if (HX_FIELD_EQ(inName,"toString") ) { return hx::Val( toString_dyn() ); }
@@ -108,6 +120,7 @@ static hx::StaticInfo *Date_obj_sStaticStorageInfo = 0;
 
 static ::String Date_obj_sMemberFields[] = {
 	HX_("mSeconds",92,75,59,82),
+	HX_("getTime",c3,7b,7f,1f),
 	HX_("toString",ac,d0,6e,38),
 	::String(null()) };
 

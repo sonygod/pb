@@ -58,6 +58,12 @@ class HXCPP_CLASS_ATTRIBUTES EntryPoint_obj : public hx::Object
 		static  ::sys::thread::Mutex mutex;
 		static ::Array< ::Dynamic> pending;
 		static int threadCount;
+		static void wakeup();
+		static ::Dynamic wakeup_dyn();
+
+		static void addThread( ::Dynamic f);
+		static ::Dynamic addThread_dyn();
+
 		static Float processEvents();
 		static ::Dynamic processEvents_dyn();
 

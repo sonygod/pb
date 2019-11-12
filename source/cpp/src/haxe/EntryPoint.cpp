@@ -14,6 +14,9 @@
 #include <sys/thread/Mutex.h>
 #endif
 
+HX_LOCAL_STACK_FRAME(_hx_pos_ec11a2a53e5eef86_48_wakeup,"haxe.EntryPoint","wakeup",0xf2406907,"haxe.EntryPoint.wakeup","C:\\HaxeToolkit\\haxe\\std/haxe/EntryPoint.hx",48,0x22ebe610)
+HX_LOCAL_STACK_FRAME(_hx_pos_ec11a2a53e5eef86_68_addThread,"haxe.EntryPoint","addThread",0x82e27f43,"haxe.EntryPoint.addThread","C:\\HaxeToolkit\\haxe\\std/haxe/EntryPoint.hx",68,0x22ebe610)
+HX_LOCAL_STACK_FRAME(_hx_pos_ec11a2a53e5eef86_63_addThread,"haxe.EntryPoint","addThread",0x82e27f43,"haxe.EntryPoint.addThread","C:\\HaxeToolkit\\haxe\\std/haxe/EntryPoint.hx",63,0x22ebe610)
 HX_LOCAL_STACK_FRAME(_hx_pos_ec11a2a53e5eef86_85_processEvents,"haxe.EntryPoint","processEvents",0x04eb4e60,"haxe.EntryPoint.processEvents","C:\\HaxeToolkit\\haxe\\std/haxe/EntryPoint.hx",85,0x22ebe610)
 HX_LOCAL_STACK_FRAME(_hx_pos_ec11a2a53e5eef86_124_run,"haxe.EntryPoint","run",0xf0324cc3,"haxe.EntryPoint.run","C:\\HaxeToolkit\\haxe\\std/haxe/EntryPoint.hx",124,0x22ebe610)
 HX_LOCAL_STACK_FRAME(_hx_pos_ec11a2a53e5eef86_37_boot,"haxe.EntryPoint","boot",0x3138e7ba,"haxe.EntryPoint.boot","C:\\HaxeToolkit\\haxe\\std/haxe/EntryPoint.hx",37,0x22ebe610)
@@ -47,6 +50,38 @@ bool EntryPoint_obj::_hx_isInstanceOf(int inClassId) {
 
 int EntryPoint_obj::threadCount;
 
+void EntryPoint_obj::wakeup(){
+            	HX_STACKFRAME(&_hx_pos_ec11a2a53e5eef86_48_wakeup)
+HXDLIN(  48)		::haxe::EntryPoint_obj::sleepLock->release();
+            	}
+
+
+STATIC_HX_DEFINE_DYNAMIC_FUNC0(EntryPoint_obj,wakeup,(void))
+
+void EntryPoint_obj::addThread( ::Dynamic f){
+            		HX_BEGIN_LOCAL_FUNC_S1(hx::LocalFunc,_hx_Closure_0, ::Dynamic,f) HXARGC(0)
+            		void _hx_run(){
+            			HX_STACKFRAME(&_hx_pos_ec11a2a53e5eef86_68_addThread)
+HXLINE(  69)			f();
+HXLINE(  70)			::haxe::EntryPoint_obj::mutex->acquire();
+HXLINE(  71)			::haxe::EntryPoint_obj::threadCount--;
+HXLINE(  72)			if ((::haxe::EntryPoint_obj::threadCount == 0)) {
+HXLINE(  73)				::haxe::EntryPoint_obj::wakeup();
+            			}
+HXLINE(  74)			::haxe::EntryPoint_obj::mutex->release();
+            		}
+            		HX_END_LOCAL_FUNC0((void))
+
+            	HX_STACKFRAME(&_hx_pos_ec11a2a53e5eef86_63_addThread)
+HXLINE(  65)		::haxe::EntryPoint_obj::mutex->acquire();
+HXLINE(  66)		::haxe::EntryPoint_obj::threadCount++;
+HXLINE(  67)		::haxe::EntryPoint_obj::mutex->release();
+HXLINE(  68)		 ::Dynamic this1 =  ::__hxcpp_thread_create( ::Dynamic(new _hx_Closure_0(f)));
+            	}
+
+
+STATIC_HX_DEFINE_DYNAMIC_FUNC1(EntryPoint_obj,addThread,(void))
+
 Float EntryPoint_obj::processEvents(){
             	HX_STACKFRAME(&_hx_pos_ec11a2a53e5eef86_85_processEvents)
 HXLINE(  87)		while(true){
@@ -54,11 +89,11 @@ HXLINE(  89)			::haxe::EntryPoint_obj::mutex->acquire();
 HXLINE(  90)			 ::Dynamic f = ::haxe::EntryPoint_obj::pending->shift();
 HXLINE(  91)			::haxe::EntryPoint_obj::mutex->release();
 HXLINE(  95)			if (hx::IsNull( f )) {
-HXLINE(  96)				goto _hx_goto_0;
+HXLINE(  96)				goto _hx_goto_3;
             			}
 HXLINE(  97)			f();
             		}
-            		_hx_goto_0:;
+            		_hx_goto_3:;
 HXLINE(  99)		Float time = ::haxe::MainLoop_obj::tick();
 HXLINE( 100)		bool _hx_tmp;
 HXDLIN( 100)		if (!(::haxe::MainLoop_obj::hasEvents())) {
@@ -81,13 +116,13 @@ void EntryPoint_obj::run(){
 HXDLIN( 124)		while(true){
 HXLINE( 125)			Float nextTick = ::haxe::EntryPoint_obj::processEvents();
 HXLINE( 126)			if ((nextTick < 0)) {
-HXLINE( 127)				goto _hx_goto_2;
+HXLINE( 127)				goto _hx_goto_5;
             			}
 HXLINE( 128)			if ((nextTick > 0)) {
 HXLINE( 129)				::haxe::EntryPoint_obj::sleepLock->wait(nextTick);
             			}
             		}
-            		_hx_goto_2:;
+            		_hx_goto_5:;
             	}
 
 
@@ -107,11 +142,15 @@ bool EntryPoint_obj::__GetStatic(const ::String &inName, Dynamic &outValue, hx::
 	case 5:
 		if (HX_FIELD_EQ(inName,"mutex") ) { outValue = ( mutex ); return true; }
 		break;
+	case 6:
+		if (HX_FIELD_EQ(inName,"wakeup") ) { outValue = wakeup_dyn(); return true; }
+		break;
 	case 7:
 		if (HX_FIELD_EQ(inName,"pending") ) { outValue = ( pending ); return true; }
 		break;
 	case 9:
 		if (HX_FIELD_EQ(inName,"sleepLock") ) { outValue = ( sleepLock ); return true; }
+		if (HX_FIELD_EQ(inName,"addThread") ) { outValue = addThread_dyn(); return true; }
 		break;
 	case 11:
 		if (HX_FIELD_EQ(inName,"threadCount") ) { outValue = ( threadCount ); return true; }
@@ -175,6 +214,8 @@ static ::String EntryPoint_obj_sStaticFields[] = {
 	HX_("mutex",7f,8f,5b,10),
 	HX_("pending",57,98,ec,2b),
 	HX_("threadCount",a5,dd,53,9e),
+	HX_("wakeup",7f,13,5d,b5),
+	HX_("addThread",cb,af,dd,46),
 	HX_("processEvents",e8,62,bd,6c),
 	HX_("run",4b,e7,56,00),
 	::String(null())

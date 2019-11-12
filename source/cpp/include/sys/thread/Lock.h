@@ -65,6 +65,9 @@ HXDLIN(  30)		( ( ::sys::thread::Lock)(__this) )->l =  ::__hxcpp_lock_create();
 		bool wait( ::Dynamic timeout);
 		::Dynamic wait_dyn();
 
+		void release();
+		::Dynamic release_dyn();
+
 };
 
 } // end namespace sys

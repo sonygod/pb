@@ -7,6 +7,8 @@
 #endif
 
 HX_DECLARE_CLASS0(TestSqlite)
+HX_DECLARE_CLASS2(haxe,io,Bytes)
+HX_DECLARE_CLASS3(tink,core,_Future,FutureObject)
 
 
 
@@ -49,8 +51,13 @@ class HXCPP_CLASS_ATTRIBUTES TestSqlite_obj : public hx::Object
 		bool _hx_isInstanceOf(int inClassId);
 		::String __ToString() const { return HX_("TestSqlite",de,72,aa,62); }
 
-		static void main();
+		static void __boot();
+		static  ::Dynamic __meta__;
+		static ::Dynamic main();
 		static ::Dynamic main_dyn();
+
+		static ::Dynamic test2( ::haxe::io::Bytes b);
+		static ::Dynamic test2_dyn();
 
 };
 

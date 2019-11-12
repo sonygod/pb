@@ -50,6 +50,12 @@ class HXCPP_CLASS_ATTRIBUTES MainEvent_obj : public hx::Object
 		bool isBlocking;
 		Float nextRun;
 		int priority;
+		void delay( ::Dynamic t);
+		::Dynamic delay_dyn();
+
+		void stop();
+		::Dynamic stop_dyn();
+
 };
 
 } // end namespace haxe

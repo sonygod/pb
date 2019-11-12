@@ -14,9 +14,16 @@ const char *__hxcpp_all_files[] = {
 "C:\\HaxeToolkit\\haxe\\std/cpp/_std/sys/thread/Mutex.hx",
 "C:\\HaxeToolkit\\haxe\\std/haxe/EntryPoint.hx",
 "C:\\HaxeToolkit\\haxe\\std/haxe/MainLoop.hx",
+"C:\\HaxeToolkit\\haxe\\std/haxe/Timer.hx",
 "C:\\HaxeToolkit\\haxe\\std/haxe/io/Bytes.hx",
 "C:\\HaxeToolkit\\haxe\\std/haxe/io/Output.hx",
 "TestSqlite.hx",
+"tink/await/AsyncField.hx",
+"tink/await/Error.hx",
+"tink/await/OutcomeTools.hx",
+"tink/core/Callback.hx",
+"tink/core/Error.hx",
+"tink/core/Future.hx",
 #endif
  0 };
 
@@ -32,9 +39,16 @@ const char *__hxcpp_all_files_fullpath[] = {
 "C:\\HaxeToolkit\\haxe\\std\\cpp\\_std\\sys\\thread\\Mutex.hx",
 "C:\\HaxeToolkit\\haxe\\std\\haxe\\EntryPoint.hx",
 "C:\\HaxeToolkit\\haxe\\std\\haxe\\MainLoop.hx",
+"C:\\HaxeToolkit\\haxe\\std\\haxe\\Timer.hx",
 "C:\\HaxeToolkit\\haxe\\std\\haxe\\io\\Bytes.hx",
 "C:\\HaxeToolkit\\haxe\\std\\haxe\\io\\Output.hx",
 "D:\\Downloads\\Compressed\\heaps-master\\heaps-master\\src\\TestSqlite.hx",
+"C:\\HaxeToolkit\\haxe\\lib\\tink_await\\git\\src\\tink\\await\\AsyncField.hx",
+"C:\\HaxeToolkit\\haxe\\lib\\tink_await\\git\\src\\tink\\await\\Error.hx",
+"C:\\HaxeToolkit\\haxe\\lib\\tink_await\\git\\src\\tink\\await\\OutcomeTools.hx",
+"C:\\HaxeToolkit\\haxe\\lib\\tink_core\\1,24,0\\src\\tink\\core\\Callback.hx",
+"C:\\HaxeToolkit\\haxe\\lib\\tink_core\\1,24,0\\src\\tink\\core\\Error.hx",
+"C:\\HaxeToolkit\\haxe\\lib\\tink_core\\1,24,0\\src\\tink\\core\\Future.hx",
 #endif
  0 };
 
@@ -50,10 +64,20 @@ const char *__hxcpp_all_classes[] = {
 "haxe.Log",
 "haxe.MainEvent",
 "haxe.MainLoop",
+"haxe.Timer",
 "haxe.io.Bytes",
 "haxe.io.Output",
 "sys.io.File",
 "sys.io.FileOutput",
+"tink.await._Error.Error_Impl_",
+"tink.await.OutcomeTools",
+"tink.core._Callback.Callback_Impl_",
+"tink.core._Callback.ListCell",
+"tink.core._Callback.CallbackList_Impl_",
+"tink.core.TypedError",
+"tink.core._Future.Future_Impl_",
+"tink.core.FutureTrigger",
+"tink.core._Future.LazyTrigger",
 #endif
  0 };
 } // namespace hx
