@@ -28,7 +28,7 @@ class TestSqlite {
 
 		trace(n2 - n1);
 
-		File.saveBytes('./testbytes.data', b);
+	//	File.saveBytes('./testbytes.data', b);
 	}
 
 	public static function test2(b:Bytes) {
