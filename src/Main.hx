@@ -1,43 +1,26 @@
-import haxe.Timer;
+import haxe.Json;
 
-using tink.CoreApi;
+using Array;
+using Lambda;
 
-@await
+@:expose
 class Main {
-	@async static function main() {
-		trace("test tink await");
-		var x = @await waitForIt();
-		trace("can't trace this?" + x);
-		@await loop();
-		trace("what can I do except  wating!");
+	static function main() {
+		var arr:Array<Float> = [5, 1, 1, 1, 1, 1]; // 闂叉姇娉ㄩ搴?
+		var robot:Array<Float> = [5, 1, 1, 1, 1, 1]; // 链哄櫒浜烘姇娉ㄩ搴?
 
-		var a = @await asyncExpressionReturn();
-		trace("still waiting");
-		trace(a);
-	}
+		var zhuangjiaIndex = 0;
 
-	@async static function loop() {
-		for (i in 0...5) {
-			// will continue after someAsycCall is done
-			@await waitForIt();
-		}
-		return 'done';
-	}
+		var zhuangjiaBiling = 1;
 
-	static function waitForIt() {
-		return Future.async(function(cb) {
-			Timer.delay(function() {
-				trace("are you waiting for me?");
-				cb("fuck!");
-			}, 1000);
-		});
-	}
+		var choushui = 2 / 100;
 
-	@async static function asyncExpressionReturn() {
-		var a = {
-			var b = @await waitForIt();
-			b;
-		};
-		return a;
+	
+
+		PK10I.main(arr, robot, zhuangjiaIndex, choushui, zhuangjiaBiling);
+
+		// SSC.main();
+
+		//	AES_Test.test();
 	}
 }

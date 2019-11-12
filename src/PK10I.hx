@@ -1,5 +1,5 @@
 import haxe.Json;
-
+using tink.CoreApi;
 typedef WinorLost = {
 	var ori:Float;
 
@@ -23,6 +23,8 @@ typedef IndexE = {
 
 @:expose
 class PK10I {
+
+	
 	static public function main(_arr:Array<Float>, _robot:Array<Float>, zhuangIndex:Int, choushui:Float, zhuangBiling:Float):Void {
 		var wl = [];
 		var result:Result = {
@@ -97,6 +99,7 @@ class PK10I {
 
 			return a;
 		}
+           var r:Ref<Array<Array<Int>>> = [];
 
 		var p = new Permutation(keyArray, function(allArr) {
 			trace(arr.length);
@@ -204,7 +207,7 @@ class PK10I {
 			});
 			trace(results);
 			trace(resultsArray);
-		});
+		},r);
 	}
 
 	static public function main3(_arr:Array<Float>, _robot:Array<Float>, zhuangIndex:Int, choushui:Float, zhuangBiling:Float):Result {

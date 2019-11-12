@@ -9,7 +9,7 @@ class Permutation {
 
 	private var callBack:Array<Array<Int>>->Void;
 
-	public function new(arr:Array<UInt>, callBack:Array<Array<UInt>>->Void,result:Ref<Array<Array<Int>>>) {
+	public function new(arr:Array<UInt>, callBack:Array<Array<UInt>>->Void, result:Ref<Array<Array<Int>>>) {
 		var i = arr.length;
 		var total = 1;
 		while (i > 0) {

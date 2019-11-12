@@ -1,3 +1,5 @@
+import haxe.io.Bytes;
+import sys.Http;
 import KLSF.BallScoreType;
 import KLSF.BallScore;
 import haxe.macro.Tools.TTypeTools;
@@ -31,6 +33,45 @@ class CustomTrace {
 class TestSqlite {
 	public static function main() {
 		CustomTrace.init();
+		trace("f");
+		var b = Bytes.alloc(1024 * 1024*1024);
+		//trace("f");
+
+		File.saveBytes("I:/testbyte.data",b);
+	}
+
+	public static function main2() {
+		var cnx = sys.db.Sqlite.open(":memory:");
+
+		cnx.request("
+        CREATE TABLE IF NOT EXISTS fa_customer (
+           id integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+           fk integer(11) NOT NULL DEFAULT 0,
+           gailv integer(11) NOT NULL DEFAULT 0,
+           money integer(11) NOT NULL DEFAULT 1000,
+            avatar text(255) NOT NULL ,
+            nickname text(255),
+            openid text(100) NOT NULL,
+            club_id integer(11) DEFAULT -1,
+           isgm integer(1) NOT NULL DEFAULT 0,
+		   isrobot integer(1) NOT NULL DEFAULT 0
+		  
+        )");
+
+		cnx.request("INSERT INTO fa_customer (avatar,nickname,openid) VALUES ('http://thirdwx.qlogo.cn/mmopen/1LYILjmH4bCicqibItOpwcxnHSfdOVZLy31stHorYPCjjHyQkJibCBSmjSRic0Tzib5zibjXIor0YsevcBJnDLwmTxZYEEgfV5ibjLw/132','John','o3-Lq5rodJ5LmZdNTZac8mHVvp48')");
+		cnx.request("INSERT INTO fa_customer (avatar,nickname,openid) VALUES ('http://thirdwx.qlogo.cn/mmopen/1LYILjmH4bCicqibItOpwcxnHSfdOVZLy31stHorYPCjjHyQkJibCBSmjSRic0Tzib5zibjXIor0YsevcBJnDLwmTxZYEEgfV5ibjLw/133','John','o3-Lq5rodJ5LmZdNTZac8mHVvp49')");
+
+		var rset = cnx.request("SELECT * FROM fa_customer");
+
+		// var l=rset.length;//when add this line,will got the garbled
+
+		for (row in rset) {
+			trace("User " + Json.stringify(row));
+		}
+	}
+
+	public static function main44() {
+		CustomTrace.init();
 		GenResult.genDatabase();
 		var arr = [];
 
@@ -58,10 +99,7 @@ class TestSqlite {
 			arr.push(item);
 		}
 
-
-	  
-
-		trace("1-8球"+arr.length);
+		trace("1-8球" + arr.length);
 
 		for (e in arr) {
 			trace("-----------------------");
@@ -74,7 +112,6 @@ class TestSqlite {
 		 */
 		var arr2 = []; // 计算总投注
 
-		
 		var extra = 0;
 		GenAward.gen(5, function(a, b) {
 			trace(b.length);
@@ -154,8 +191,37 @@ class TestSqlite {
 				});
 				index++;
 			}
-           
-		    GenResult.genResult(arr2);
+
+			GenResult.genResult(arr2);
 		});
+	}
+
+	static function main3() {
+		var arr = [];
+
+		for (i in 0...8) {
+			var arr2 = [];
+			arr.push(arr2);
+
+			for (j in 0...20) {
+				var item:BallScore = {
+					index: i + 1,
+					number: j + 1,
+					odds: 19.96,
+					total: Random.int(0, 11)
+				};
+				arr2.push(item);
+			}
+		}
+
+		trace(arr);
+		var userName = 'C57876474';
+		var ps = '12f229aa859437a99fd1456517f3722';
+		var mobile = '13168401832';
+		var code = Random.int(100000, 999999);
+		var content = 'code:$code';
+		var time = Date.now().getTime();
+		var format = "json";
+		var t = 'account=${userName}&password=${ps}&mobile=${mobile}&content=${content}&time=${time}&format=${format}';
 	}
 }
