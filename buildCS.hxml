@@ -1,0 +1,12 @@
+
+
+-cp src
+-cs cs 
+-main TestSqlite
+-lib ds
+-lib random
+-lib tink_json
+-lib hxbit
+-lib crypto
+-dce full
+
