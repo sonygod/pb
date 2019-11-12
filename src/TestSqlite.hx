@@ -34,7 +34,7 @@ class TestSqlite {
 	public static function test2(b:Bytes) {
 		return Future.async(function(callBack) {
 			var index = 0;
-			var total = 16;
+			var total = 128;
 			var sum = 1024 * 1024 * 1015;
 
 			var base = Std.int(sum / total);
