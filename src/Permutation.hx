@@ -11,10 +11,14 @@ class Permutation {
 	private var callBack:Array<Array<Int>>->Void;
 
 	public function new(arr:Array<UInt>, callBack:Array<Array<UInt>>->Void, result:Ref<Array<Array<Int>>>) {
-		var i = arr.length;
-		var total = 1;
+		var max=arr.length;
+		var arr=[for(ii in 0...max) ii+1];
+		var i = arr.length-1;
+
+	
 		while (i > 0) {
-			total *= i;
+			var v = arr[i];
+			total *= v;
 			i--;
 		}
 

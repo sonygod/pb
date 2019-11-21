@@ -11,20 +11,25 @@ class PermutationBit {
 
 	private var callBack:Array<Array<Int>>->Void;
 
-	static var lastIndex:UInt = 0;
-	static var len = 0;
+	var lastIndex:UInt = 0;
+	var len = 0;
 
-	public function new(arr:Bytes, callBack:Bytes->Void, result:Ref<Bytes>) {
-		var i = arr.length;
-		len = i;
-		var total = 1;
+	public function new(array:Bytes, callBack:Bytes->Void, result:Ref<Bytes>) {
+		// trace(total);
+
+		len = array.length;
+		var arr = [for (ii in 0...len) ii + 1];
+		var i = arr.length - 1;
+
 		while (i > 0) {
-			total *= arr.get(i-1);
+			var v = arr[i];
+			total *= v;
 			i--;
 		}
-		//trace(total);
-		total*=len;
-		heapPermutation(arr, arr.length, total, callBack, result);
+		total *= len;
+
+		heapPermutation(array, arr.length, total, callBack, result);
+		//	heapPermutation(array,len,total,callBack);
 	}
 
 	// public static function gen(arr:Array<UInt>, callBack:Array<Array<UInt>>->Void, result:Ref<Array<Array<Int>>>) {
@@ -38,7 +43,7 @@ class PermutationBit {
 	// }
 	// https://blog.csdn.net/shaoxiaohu1/article/details/50684782
 
-	static function copyBytes(b:Bytes) {
+	function copyBytes(b:Bytes) {
 		var a = Bytes.alloc(b.length);
 		a.blit(0, b, 0, b.length);
 
@@ -51,14 +56,14 @@ class PermutationBit {
 			var b = copyBytes(a);
 			result.value.blit(lastIndex, b, 0, b.length); // (copyBytes(b));
 			lastIndex += len;
-			if (lastIndex ==total) {
+			if (lastIndex == total) {
 				callBack(result);
 			}
 		}
 
 		for (i in 0...size) {
-			var s=size-1;
-			
+			var s = size - 1;
+
 			heapPermutation(a, s, total, callBack, result);
 
 			// if (size % 2 == 1) {
@@ -68,15 +73,15 @@ class PermutationBit {
 
 				a.set(0, a.get(size - 1));
 				//	a[size - 1] = temp;
-				a.set(size  - 1, temp);
+				a.set(size - 1, temp);
 			} else {
 				var temp = a.get(i); // a[i];
 				// a[i] = a[size - 1];
 				//	a[size - 1] = temp;
 
-				a.set(i, a.get(size  - 1));
+				a.set(i, a.get(size - 1));
 
-				a.set(size  - 1, temp);
+				a.set(size - 1, temp);
 			}
 		}
 	}
