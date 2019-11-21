@@ -1,12 +1,9 @@
 package;
 
-import polygonal.ds.tools.mem.*;
+import haxe.io.Bytes;
 
 using tink.CoreApi;
 
-/**
- * slowly than array!
- */
 class PermutationBit {
 	private var result = [];
 
@@ -14,83 +11,73 @@ class PermutationBit {
 
 	private var callBack:Array<Array<Int>>->Void;
 
-	public function new(arr:Array<UInt>, callBack:Array<ByteMemory>->Void, result:Ref<Array<ByteMemory>>) {
+	static var lastIndex:UInt = 0;
+	static var len = 0;
+
+	public function new(arr:Bytes, callBack:Bytes->Void, result:Ref<Bytes>) {
 		var i = arr.length;
+		len = i;
 		var total = 1;
 		while (i > 0) {
-			total *= i;
+			total *= arr.get(i-1);
 			i--;
 		}
-
-		heapPermutation(ByteMemory.ofArray(arr), arr.length, total, callBack, result);
+		//trace(total);
+		total*=len;
+		heapPermutation(arr, arr.length, total, callBack, result);
 	}
 
-	public static function gen(arr:Array<UInt>, callBack:Array<ByteMemory>->Void, result:Ref<Array<ByteMemory>>) {
-		var i = arr.length;
-		var total = 1;
-		while (i > 0) {
-			total *= i;
-			i--;
-		}
-
-		heapPermutation(ByteMemory.ofArray(arr), arr.length, total, callBack, result);
-	}
-
+	// public static function gen(arr:Array<UInt>, callBack:Array<Array<UInt>>->Void, result:Ref<Array<Array<Int>>>) {
+	// 	var i = arr.length;
+	// 	var total = 1;
+	// 	while (i > 0) {
+	// 		total *= i;
+	// 		i--;
+	// 	}
+	// 	heapPermutation(arr, arr.length, total, callBack, result);
+	// }
 	// https://blog.csdn.net/shaoxiaohu1/article/details/50684782
 
-	private static function heapPermutation(a:ByteMemory, size:UInt, total:Int, callBack:Array<ByteMemory>->Void, result:Ref<Array<ByteMemory>>) {
+	static function copyBytes(b:Bytes) {
+		var a = Bytes.alloc(b.length);
+		a.blit(0, b, 0, b.length);
+
+		return a;
+	}
+
+	private function heapPermutation(a:Bytes, size:UInt, total:Int, callBack:Bytes->Void, result:Ref<Bytes>) {
 		if (size == 1) {
 			// trace(a);
-
-			result.value.push(a.clone());
-			if (result.value.length == total) {
+			var b = copyBytes(a);
+			result.value.blit(lastIndex, b, 0, b.length); // (copyBytes(b));
+			lastIndex += len;
+			if (lastIndex ==total) {
 				callBack(result);
 			}
 		}
 
 		for (i in 0...size) {
-			heapPermutation(a, size - 1, total, callBack, result);
+			var s=size-1;
+			
+			heapPermutation(a, s, total, callBack, result);
 
 			// if (size % 2 == 1) {
 			if (size & 1 == 1) {
-				a.swap(0, size - 1);
+				var temp = a.get(0); // a[0];
+				// a[0] = a[size - 1];
+
+				a.set(0, a.get(size - 1));
+				//	a[size - 1] = temp;
+				a.set(size  - 1, temp);
 			} else {
-				a.swap(i, size - 1);
+				var temp = a.get(i); // a[i];
+				// a[i] = a[size - 1];
+				//	a[size - 1] = temp;
+
+				a.set(i, a.get(size  - 1));
+
+				a.set(size  - 1, temp);
 			}
-		}
-	}
-
-	/**
-	 * 这里求出每个递归。
-	 * @param data
-	 * @param n
-	 * @param outLen
-	 * @param startIndex
-	 * @param m
-	 * @param arr
-	 * @param arrIndex
-	 * @param result
-	 */
-	public static function computeAllChoices(data:Ref<Array<Int>>, n:Int, outLen:Int, startIndex:Int, m:Int, arr:Array<Int>, arrIndex:Int,
-			result:Ref<Array<Array<Int>>>) {
-		if (m == 0) {
-			trace("finish" + arr);
-
-			result.value.push(arr);
-
-			return;
-		}
-
-		var endIndex = n - m;
-		// for(int i=startIndex; i<=endIndex; i++)
-
-		var i = startIndex;
-
-		while (i <= endIndex) {
-			arr[arrIndex] = data.value[i];
-			computeAllChoices(data, n, outLen, i + 1, m - 1, arr, arrIndex + 1, result);
-
-			i++;
 		}
 	}
 }

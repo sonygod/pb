@@ -1,5 +1,6 @@
 package;
 
+import haxe.io.Bytes;
 using tink.CoreApi;
 
 class Permutation {
@@ -32,6 +33,15 @@ class Permutation {
 	}
 
 	// https://blog.csdn.net/shaoxiaohu1/article/details/50684782
+
+
+	static function copyBytes(b:Bytes){
+
+		var a=Bytes.alloc(b.length);
+		a.blit(0,b,0,b.length);
+
+		return a;
+	}
 
 	private static function heapPermutation(a:Array<UInt>, size:UInt, total:Int, callBack:Array<Array<Int>>->Void, result:Ref<Array<Array<Int>>>) {
 		if (size == 1) {

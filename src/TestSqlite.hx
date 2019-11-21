@@ -1,3 +1,4 @@
+import haxe.io.BytesData;
 import gen.GenKLSFJSON;
 import haxe.Json;
 import haxe.io.Bytes;
@@ -23,26 +24,73 @@ class TestSqlite {
 	public static function main() {
 		CustomTrace.init();
 
-		var b = Bytes.alloc(10);
+		var max = 8;
+		var b = Bytes.alloc(max);
 
-		for (i in 0...10) {
-			b.set(i, i);
+		for (i in 0...max) {
+			b.set(i, i +1);
 		}
-		var a = Bytes.alloc(100);
-
-		a.blit(0, b, 0, b.length);
 
 		//  GenKLSFJSON.main();
-		var item = [1, 2, 3, 4, 5,6,7,8,9,10];
+
+		var item = b;
+		var total = 1;
+		var i = b.length;
+		while (i > 0) {
+			var v = b.get(i - 1);
+			total *= v;
+			i--;
+		}
+		var result:Ref<Bytes> = Bytes.alloc(total * max);
+		var now = Date.now().getTime();
+		trace("now");
+		new PermutationBit(item, function(d) {
+
+			
+			trace("Json.stringify(d)" + (Date.now().getTime() - now));
+			// Json.stringify(result.value);
+
+			//readBytes(d, max);
+
+			File.saveBytes("c:/bytes.data",d);
+		}, result);
+
+
+
+
+         var item = [1, 2];
 		var result:Ref<Array<Array<Int>>> = [];
 		var now=Date.now().getTime();
 		trace("now");
 		new Permutation(item, function(d) {
+			trace(d);
 			trace("Json.stringify(d)"+(Date.now().getTime()-now));
 			//Json.stringify(result.value);
 		}, result);
-
 		//	File.saveBytes('./testbytes.data', b);
+	}
+
+	static function readBytes(b:Bytes, max:Int) {
+		var len = b.length;
+
+		var index = 0;
+
+		while (index < len) {
+			
+
+			for(i in 0...max){
+				var k=index+i;
+	      trace('i=$k  v=${b.get(k )}');
+			}
+		
+            
+			index+=max;
+
+			trace("------------");
+
+			
+			
+		}
 	}
 
 	public static function convert(data:String, format:Ref<String>) {
