@@ -1,3 +1,5 @@
+import gen.GenKLSFJSON;
+import haxe.Json;
 import haxe.io.Bytes;
 import sys.io.File;
 import haxe.MainLoop;
@@ -18,19 +20,48 @@ class CustomTrace {
 
 @await
 class TestSqlite {
-	@async public static function main() {
+	public static function main() {
 		CustomTrace.init();
 
-		trace("start now ");
-		var n1 = Date.now().getTime();
-		var b = Bytes.alloc(1024 * 1024 * 1015);
-		var result = @await test2(b);
+		var b = Bytes.alloc(10);
 
-		var n2 = Date.now().getTime();
+		for (i in 0...10) {
+			b.set(i, i);
+		}
+		var a = Bytes.alloc(100);
 
-		trace(n2 - n1);
+		a.blit(0, b, 0, b.length);
+
+		//  GenKLSFJSON.main();
+		var item = [1, 2, 3, 4, 5,6,7,8,9,10];
+		var result:Ref<Array<Array<Int>>> = [];
+		var now=Date.now().getTime();
+		trace("now");
+		new Permutation(item, function(d) {
+			trace("Json.stringify(d)"+(Date.now().getTime()-now));
+			//Json.stringify(result.value);
+		}, result);
 
 		//	File.saveBytes('./testbytes.data', b);
+	}
+
+	public static function convert(data:String, format:Ref<String>) {
+		var sp = data.split(',');
+		for (i in 0...sp.length) {
+			var es = sp[i].split(':');
+
+			if (es[1] == null || es[1] == "null") {
+				if (es[0].substr(0, 1) == "{") {
+					format.value += "{";
+				}
+			} else {
+				if (i != sp.length - 1) {
+					format.value += es[0] + ":" + es[1] + ",";
+				} else {
+					format.value += es[0] + ":" + es[1];
+				}
+			}
+		}
 	}
 
 	public static function test2(b:Bytes) {

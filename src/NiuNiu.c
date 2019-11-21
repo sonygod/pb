@@ -12,8 +12,6 @@ class NiuNiu {
 		for (i in 0...3) {
 			for (j in i + 1...bk.length - 1) {
 				if ((bk[i] + bk[j] + bk[j + 1]) % 10 == 0) {
-
-					trace("有3张牌之和=10  "+bk[i] +""+ bk[j] +""+ bk[j + 1]);
 					seat = [i, j, j + 1];
 					break;
 				}
@@ -36,10 +34,10 @@ class NiuNiu {
 	}
 
 	static public function test() {
-		var arr = [9,7,4,3,1];
+		var arr = [2, 1, 7, 4, 5];
 		var x = check_NiuPoint(arr);
 		trace(x);
-		var arr = [10,9,8,6,5];
+		var arr = [2, 1, 7, 4, 6];
 		var x = check_NiuPoint(arr);
 		trace(x);
 	}
