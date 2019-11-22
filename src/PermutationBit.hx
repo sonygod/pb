@@ -44,10 +44,10 @@ class PermutationBit {
 	// https://blog.csdn.net/shaoxiaohu1/article/details/50684782
 
 	function copyBytes(b:Bytes) {
-		var a = Bytes.alloc(b.length);
-		a.blit(0, b, 0, b.length);
+		//var a = Bytes.alloc(b.length);
+		//a.blit(0, b, 0, b.length);
 
-		return a;
+		return b;
 	}
 
 	private function heapPermutation(a:Bytes, size:UInt, total:Int, callBack:Bytes->Void, result:Ref<Bytes>) {

@@ -23,8 +23,14 @@ class CustomTrace {
 
 @await
 class TestSqlite {
+		public static final LOGIC_MASK_COLOR = 0xF0;
+	// 花色掩码
+	public static final LOGIC_MASK_VALUE = 0x0F;
 	public static function main() {
 		CustomTrace.init();
+
+		
+		
 
 		var data:Ref<Array<Int>> = [for (i in 1...21) i];
 
@@ -60,15 +66,14 @@ class TestSqlite {
 			var result:Ref<Bytes> = Bytes.alloc(total * max);
 
 			trace("kklength" + kkk.length);
-			
+
 			trace("now" + total + " max");
 			new PermutationBit(item, function(d) {
-				
 				// Json.stringify(result.value);
 
 				// readBytes(d, max);
-trace("n"+n);
-				File.saveBytes('d:/data/bytes_$n.data', d);
+				trace("n" + n);
+				//File.saveBytes('d:/data/bytes_$n.data', d);
 			}, result);
 		}
 
