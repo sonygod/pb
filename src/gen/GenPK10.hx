@@ -70,10 +70,10 @@ class GenPK10 {
 			var to = (i + 1) * max;
 			before.blit(0, bytes, from, max);
 			eachB.set(0, before.get(0) > before.get(9) ? 0xa1 : 0xa0); // 第1位龙虎
-			eachB.set(1, before.get(1) > before.get(8) ? 0xa1 : 0xa0); // 第2位龙虎
-			eachB.set(2, before.get(2) > before.get(7) ? 0xa1 : 0xa0); // 第3位龙虎
-			eachB.set(3, before.get(3) > before.get(6) ? 0xa1 : 0xa0); // 第4位龙虎
-			eachB.set(4, before.get(3) > before.get(5) ? 0xa1 : 0xa0); // 第5位龙虎
+			eachB.set(1, before.get(1) > before.get(8) ? 0xb1 : 0xb0); // 第2位龙虎
+			eachB.set(2, before.get(2) > before.get(7) ? 0xc1 : 0xc0); // 第3位龙虎
+			eachB.set(3, before.get(3) > before.get(6) ? 0xd1 : 0xd0); // 第4位龙虎
+			eachB.set(4, before.get(3) > before.get(5) ? 0xe1 : 0xe0); // 第5位龙虎
 			//---------------------------------------------------------------------
 			eachB.set(5, before.get(0) + before.get(1)); // 冠亚和
 			//-----------------------------------------------------------------------------
