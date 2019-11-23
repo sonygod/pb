@@ -1,0 +1,26 @@
+-cp src
+-hl source/klsf.hl
+-lib random
+-main KLSFGEN
+-lib tink_await
+-lib tink_core
+-D SERVER
+-lib ds
+-lib crypto
+-D debug
+-lib format
+
+--next
+
+
+-cp src
+-cpp source/klsf
+-lib random
+-main KLSFGEN
+-lib tink_await
+-lib tink_core
+-D SERVER
+-lib ds
+-lib crypto
+-D debug
+-lib format

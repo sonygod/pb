@@ -7,7 +7,7 @@ using tink.CoreApi;
 class PermutationBit {
 	private var result = [];
 
-	private var total:Int = 1;
+	static var total:Int = 1;
 
 	private var callBack:Array<Array<Int>>->Void;
 
@@ -18,17 +18,20 @@ class PermutationBit {
 		// trace(total);
 
 		len = array.length;
-		var arr = [for (ii in 0...len) ii + 1];
-		var i = arr.length - 1;
 
-		while (i > 0) {
-			var v = arr[i];
-			total *= v;
-			i--;
+		if (total == 1) {
+			var arr = [for (ii in 0...len) ii + 1];
+			var i = arr.length - 1;
+
+			while (i > 0) {
+				var v = arr[i];
+				total *= v;
+				i--;
+			}
+			total *= len;
 		}
-		total *= len;
 
-		heapPermutation(array, arr.length, total, callBack, result);
+		heapPermutation(array, len, total, callBack, result);
 		//	heapPermutation(array,len,total,callBack);
 	}
 
@@ -44,8 +47,8 @@ class PermutationBit {
 	// https://blog.csdn.net/shaoxiaohu1/article/details/50684782
 
 	function copyBytes(b:Bytes) {
-		//var a = Bytes.alloc(b.length);
-		//a.blit(0, b, 0, b.length);
+		// var a = Bytes.alloc(b.length);
+		// a.blit(0, b, 0, b.length);
 
 		return b;
 	}

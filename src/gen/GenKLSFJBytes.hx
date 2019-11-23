@@ -16,6 +16,47 @@ using Lambda;
  */
 class GenKLSFJSONBytes {
 	public static function main() {
+		var data:Ref<Array<Int>> = [for (i in 1...21) i];
+
+		var result8:tink.core.Ref<Array<Array<Int>>> = [];
+
+		GenKLSF.computeAllChoices(data, data.value.length, 8, 0, 8, [], 0, result8);
+
+		trace("总数是=" + result8.value.length);
+		var max = 8;
+		var total = 1;
+		var arr = [for (ii in 0...max) ii + 1];
+		var i = arr.length - 1;
+
+		while (i > 0) {
+			var v = arr[i];
+			total *= v;
+			i--;
+		}
+		var result:Ref<Bytes> = Bytes.alloc(total * max);
+		var b = Bytes.alloc(max);
+		for (n in 0...result8.value.length) {
+			var current = result8.value[n];
+
+			// trace('current=$current');
+
+			for (i in 0...max) {
+				b.set(i, current[i]);
+			}
+
+			//  GenKLSFJSON.main();
+
+			var item = b;
+
+			new PermutationBit(item, function(d) {
+				if (n % 1000 == 0) {
+					trace(n);
+				}
+			}, result);
+		}
+	}
+
+	public static function genMulThread() {
 		// CustomTrace.init();
 
 		var data:Ref<Array<Int>> = [for (i in 1...21) i];
@@ -27,7 +68,7 @@ class GenKLSFJSONBytes {
 		trace('总数${result.value.length}');
 		var index = 0;
 
-		var threadCounts = 64;
+		var threadCounts = 6;
 
 		var eachCount = Std.int(len / threadCounts);
 
@@ -65,7 +106,9 @@ class GenKLSFJSONBytes {
 				var r:Ref<Bytes> = Bytes.alloc(322560);
 
 				var itemBytes = Bytes.alloc(8);
-				for (k in i * eachCount...(i + 1) * eachCount) {
+				var from=i * eachCount;
+				var to=(i + 1) * eachCount;
+				for (k in from...to) {
 					var currentIndex = k + i;
 
 					var item = result.value[currentIndex];
@@ -76,10 +119,14 @@ class GenKLSFJSONBytes {
 					new PermutationBit(itemBytes, function(d) {
 						index++;
 						// var remain = len - index;
-                    // r.value.fill(0,r.value.length,0);
-					 
-						trace(index);
+						// r.value.fill(0,r.value.length,0);
+
+						
 					}, r);
+
+					if (index % 1000 == 0) {
+							trace(index);
+						}
 				}
 			});
 		}
