@@ -68,7 +68,7 @@ class GenKLSFJSONBytes {
 		trace('总数${result.value.length}');
 		var index = 0;
 
-		var threadCounts = 16;
+		var threadCounts = 15;
 
 		var eachCount = Std.int(len / threadCounts);
 
@@ -126,6 +126,10 @@ class GenKLSFJSONBytes {
 
 					if (index % 1000 == 0) {
 							trace(index);
+						}
+
+						if(index==totals){
+							trace("恭喜你，完成了");
 						}
 				}
 			});
