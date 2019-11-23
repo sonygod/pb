@@ -1,0 +1,8 @@
+-cp src
+-js source/niuniu.js
+-D js-es=6 
+-main NiuNiu
+-dce full
+
+
+

@@ -13,7 +13,7 @@ class NiuNiu {
 			for (j in i + 1...bk.length - 1) {
 				if ((bk[i] + bk[j] + bk[j + 1]) % 10 == 0) {
 
-					trace("有3张牌之和=10  "+bk[i] +""+ bk[j] +""+ bk[j + 1]);
+					//trace("有3张牌之和=10  "+bk[i] +""+ bk[j] +""+ bk[j + 1]);
 					seat = [i, j, j + 1];
 					break;
 				}

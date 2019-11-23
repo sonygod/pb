@@ -30,7 +30,7 @@ class TestSqlite {
 		CustomTrace.init();
 
 		
-		
+	
 
 		var data:Ref<Array<Int>> = [for (i in 1...21) i];
 

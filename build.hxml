@@ -20,7 +20,7 @@
 
 -cp src
 -cp samples
--js bin/heaps.js
+-hl test.hl
 -main Main
 -lib tink_web
 -lib heaps
@@ -32,6 +32,5 @@
 -lib hxbit
 -lib crypto
 -dce full
--D js-es=6
 -debug
 -lib tink_core

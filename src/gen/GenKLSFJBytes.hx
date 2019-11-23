@@ -11,13 +11,12 @@ import sys.db.Sqlite;
 using tink.CoreApi;
 using Lambda;
 
-
 /**
  * 生成json.
  */
 class GenKLSFJSONBytes {
 	public static function main() {
-		//CustomTrace.init();
+		// CustomTrace.init();
 
 		var data:Ref<Array<Int>> = [for (i in 1...21) i];
 
@@ -28,7 +27,7 @@ class GenKLSFJSONBytes {
 		trace('总数${result.value.length}');
 		var index = 0;
 
-		var threadCounts = 16;
+		var threadCounts = 64;
 
 		var eachCount = Std.int(len / threadCounts);
 
@@ -63,30 +62,24 @@ class GenKLSFJSONBytes {
 		//	return;
 		for (i in 0...threadCounts) {
 			MainLoop.addThread(function() {
+				var r:Ref<Bytes> = Bytes.alloc(322560);
+
+				var itemBytes = Bytes.alloc(8);
 				for (k in i * eachCount...(i + 1) * eachCount) {
 					var currentIndex = k + i;
-					index++;
+
 					var item = result.value[currentIndex];
 
-					var r:Ref<Bytes> = Bytes.alloc(322560);
-
-					if (!sys.FileSystem.exists('./database/data/klsf_$currentIndex.data')) {
-						File.saveContent('./database/data/klsf_$currentIndex.data', "0");
-
-						var itemBytes = Bytes.alloc(8);
-
-						for (i in 0...item.length) {
-							itemBytes.set(i, item[i]);
-						}
-						new PermutationBit(itemBytes, function(d) {
-							File.saveBytes('./database/data/klsf_$currentIndex.data', d);
-							var remain = len - index;
-
-							trace('当前线程 $i 当前数量${k + i} 索引是=$index klsf_$currentIndex.data');
-						}, r);
-					} else {
-						// trace("文件存在，忽略!"+currentIndex);
+					for (i in 0...item.length) {
+						itemBytes.set(i, item[i]);
 					}
+					new PermutationBit(itemBytes, function(d) {
+						index++;
+						// var remain = len - index;
+                    // r.value.fill(0,r.value.length,0);
+					 
+						trace(index);
+					}, r);
 				}
 			});
 		}

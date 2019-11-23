@@ -1,0 +1,31 @@
+-cp src
+-hl source/PK10.hl
+-lib random
+-main PK10Gen
+-lib tink_await
+-lib tink_core
+-D SERVER
+-lib ds
+-lib crypto
+-D debug
+-lib format
+--next
+
+-cp src
+-js source/PK10.js
+-lib random
+-main PK10Gen
+-lib tink_await
+-lib tink_core
+-D SERVER
+-lib ds
+-lib crypto
+-D debug
+-lib format
+-lib hxnodejs
+-D es-js=6
+-dce full
+
+
+
+

@@ -7,6 +7,8 @@
 -D SERVER
 -lib ds
 -lib crypto
+-D debug
+-lib format
 --next
 -cp src
 -neko source/TestSqlite.n
@@ -15,6 +17,7 @@
 -lib tink_await
 -lib tink_core
 -lib crypto
+-lib format
 -D SERVER
 
 

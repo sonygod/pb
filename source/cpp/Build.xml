@@ -2,68 +2,6 @@
 <set name="HXCPP_API_LEVEL" value="400" />
 <files id="haxe">
 <compilerflag value="-Iinclude"/>
-  <file name="src/tink/core/Outcome.cpp" >
-   <depend name="include/tink/core/Outcome.h"/>
-  </file>
-  <file name="src/tink/core/_Future/LazyTrigger.cpp" >
-   <depend name="include/tink/core/FutureTrigger.h"/>
-   <depend name="include/tink/core/LinkObject.h"/>
-   <depend name="include/tink/core/_Callback/Callback_Impl_.h"/>
-   <depend name="include/tink/core/_Future/FutureObject.h"/>
-   <depend name="include/tink/core/_Future/LazyTrigger.h"/>
-  </file>
-  <file name="src/tink/core/FutureTrigger.cpp" >
-   <depend name="include/tink/core/FutureTrigger.h"/>
-   <depend name="include/tink/core/LinkObject.h"/>
-   <depend name="include/tink/core/_Callback/CallbackList_Impl_.h"/>
-   <depend name="include/tink/core/_Callback/Callback_Impl_.h"/>
-   <depend name="include/tink/core/_Callback/ListCell.h"/>
-   <depend name="include/tink/core/_Future/FutureObject.h"/>
-  </file>
-  <file name="src/tink/core/_Future/Future_Impl_.cpp" >
-   <depend name="include/tink/core/FutureTrigger.h"/>
-   <depend name="include/tink/core/_Callback/Callback_Impl_.h"/>
-   <depend name="include/tink/core/_Future/FutureObject.h"/>
-   <depend name="include/tink/core/_Future/Future_Impl_.h"/>
-   <depend name="include/tink/core/_Future/LazyTrigger.h"/>
-  </file>
-  <file name="src/tink/core/_Future/FutureObject.cpp" >
-   <depend name="include/tink/core/LinkObject.h"/>
-   <depend name="include/tink/core/_Future/FutureObject.h"/>
-  </file>
-  <file name="src/tink/core/TypedError.cpp" >
-   <depend name="include/haxe/StackItem.h"/>
-   <depend name="include/tink/core/TypedError.h"/>
-  </file>
-  <file name="src/tink/core/_Callback/CallbackList_Impl_.cpp" >
-   <depend name="include/tink/core/LinkObject.h"/>
-   <depend name="include/tink/core/_Callback/CallbackList_Impl_.h"/>
-   <depend name="include/tink/core/_Callback/Callback_Impl_.h"/>
-   <depend name="include/tink/core/_Callback/ListCell.h"/>
-  </file>
-  <file name="src/tink/core/_Callback/ListCell.cpp" >
-   <depend name="include/tink/core/LinkObject.h"/>
-   <depend name="include/tink/core/_Callback/ListCell.h"/>
-  </file>
-  <file name="src/tink/core/LinkObject.cpp" >
-   <depend name="include/tink/core/LinkObject.h"/>
-  </file>
-  <file name="src/tink/core/_Callback/Callback_Impl_.cpp" >
-   <depend name="include/haxe/Timer.h"/>
-   <depend name="include/tink/core/_Callback/Callback_Impl_.h"/>
-  </file>
-  <file name="src/tink/await/OutcomeTools.cpp" >
-   <depend name="include/Std.h"/>
-   <depend name="include/tink/await/OutcomeTools.h"/>
-   <depend name="include/tink/await/_Error/Error_Impl_.h"/>
-   <depend name="include/tink/core/Outcome.h"/>
-   <depend name="include/tink/core/TypedError.h"/>
-  </file>
-  <file name="src/tink/await/_Error/Error_Impl_.cpp" >
-   <depend name="include/Std.h"/>
-   <depend name="include/tink/await/_Error/Error_Impl_.h"/>
-   <depend name="include/tink/core/TypedError.h"/>
-  </file>
   <file name="src/sys/io/FileOutput.cpp" >
    <depend name="include/haxe/io/Bytes.h"/>
    <depend name="include/haxe/io/Error.h"/>
@@ -76,30 +14,24 @@
    <depend name="include/sys/io/File.h"/>
    <depend name="include/sys/io/FileOutput.h"/>
   </file>
-  <file name="src/haxe/io/Error.cpp" >
-   <depend name="include/haxe/io/Error.h"/>
-  </file>
   <file name="src/haxe/io/Output.cpp" >
    <depend name="include/haxe/io/Bytes.h"/>
    <depend name="include/haxe/io/Error.h"/>
    <depend name="include/haxe/io/Output.h"/>
   </file>
+  <file name="src/haxe/io/Error.cpp" >
+   <depend name="include/haxe/io/Error.h"/>
+  </file>
   <file name="src/haxe/io/Bytes.cpp" >
    <depend name="include/haxe/io/Bytes.h"/>
-  </file>
-  <file name="src/haxe/Timer.cpp" >
-   <depend name="include/haxe/MainEvent.h"/>
-   <depend name="include/haxe/MainLoop.h"/>
-   <depend name="include/haxe/Timer.h"/>
+   <depend name="include/haxe/io/Error.h"/>
   </file>
   <file name="src/haxe/MainLoop.cpp" >
-   <depend name="include/haxe/EntryPoint.h"/>
    <depend name="include/haxe/MainEvent.h"/>
    <depend name="include/haxe/MainLoop.h"/>
   </file>
   <file name="src/haxe/MainEvent.cpp" >
    <depend name="include/haxe/MainEvent.h"/>
-   <depend name="include/haxe/MainLoop.h"/>
   </file>
   <file name="src/haxe/Log.cpp" >
    <depend name="include/Std.h"/>
@@ -117,24 +49,15 @@
   <file name="src/sys/thread/Mutex.cpp" >
    <depend name="include/sys/thread/Mutex.h"/>
   </file>
-  <file name="src/haxe/StackItem.cpp" >
-   <depend name="include/haxe/StackItem.h"/>
-  </file>
   <file name="src/TestSqlite.cpp" >
    <depend name="include/CustomTrace.h"/>
    <depend name="include/Date.h"/>
-   <depend name="include/Std.h"/>
+   <depend name="include/Permutation.h"/>
+   <depend name="include/PermutationBit.h"/>
    <depend name="include/TestSqlite.h"/>
    <depend name="include/haxe/Log.h"/>
-   <depend name="include/haxe/MainLoop.h"/>
    <depend name="include/haxe/io/Bytes.h"/>
    <depend name="include/sys/io/File.h"/>
-   <depend name="include/tink/await/OutcomeTools.h"/>
-   <depend name="include/tink/core/LinkObject.h"/>
-   <depend name="include/tink/core/Outcome.h"/>
-   <depend name="include/tink/core/TypedError.h"/>
-   <depend name="include/tink/core/_Future/FutureObject.h"/>
-   <depend name="include/tink/core/_Future/Future_Impl_.h"/>
   </file>
   <file name="src/CustomTrace.cpp" >
    <depend name="include/CustomTrace.h"/>
@@ -145,17 +68,22 @@
   <file name="src/Std.cpp" >
    <depend name="include/Std.h"/>
   </file>
+  <file name="src/PermutationBit.cpp" >
+   <depend name="include/PermutationBit.h"/>
+   <depend name="include/haxe/io/Bytes.h"/>
+  </file>
+  <file name="src/Permutation.cpp" >
+   <depend name="include/Permutation.h"/>
+  </file>
   <file name="src/Date.cpp" >
    <depend name="include/Date.h"/>
   </file>
   <file name="src/__boot__.cpp" >
-   <depend name="include/tink/core/Outcome.h"/>
    <depend name="include/haxe/io/Error.h"/>
-   <depend name="include/haxe/StackItem.h"/>
-   <depend name="include/tink/core/_Callback/Callback_Impl_.h"/>
    <depend name="include/haxe/Log.h"/>
    <depend name="include/haxe/EntryPoint.h"/>
    <depend name="include/TestSqlite.h"/>
+   <depend name="include/PermutationBit.h"/>
   </file>
   <file name="src/__files__.cpp" if='HXCPP_DEBUGGER'>
   </file>
@@ -168,7 +96,6 @@
   <file name="src/__lib__.cpp" >
    <depend name="include/TestSqlite.h"/>
    <depend name="include/haxe/EntryPoint.h"/>
-   <depend name="include/tink/core/_Future/FutureObject.h"/>
   </file>
 </files>
 <files id="__main__">
@@ -176,7 +103,6 @@
   <file name="src/__main__.cpp" >
    <depend name="include/TestSqlite.h"/>
    <depend name="include/haxe/EntryPoint.h"/>
-   <depend name="include/tink/core/_Future/FutureObject.h"/>
   </file>
 </files>
 <files id="__resources__">
@@ -186,8 +112,6 @@
 <set name="HAXE_OUTPUT" value="TestSqlite" />
 <include name="${HXCPP}/build-tool/BuildCommon.xml"/>
 <include name="${HXCPP}/src/hx/libs/std/Build.xml"/>
-<include name="${HXCPP}/src/hx/libs/std/Build.xml"/>
-<include name="${HXCPP}/src/hx/libs/ssl/Build.xml"/>
 <include name="${HXCPP}/src/hx/libs/std/Build.xml"/>
 <error value="Hxcpp is out of date - please update" unlessApi="400" />
 </xml>

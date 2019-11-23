@@ -21,3 +21,5 @@ database/
 database/json
 /java
 /cs
+/*.data
+/pk10/*.data
