@@ -7,7 +7,7 @@ import gen.GenKLSF;
 import sys.io.File;
 import haxe.Json;
 import sys.db.Sqlite;
-
+import sys.io.File;
 using tink.CoreApi;
 using Lambda;
 
@@ -120,6 +120,8 @@ class GenKLSFJSONBytes {
 						index++;
 						// var remain = len - index;
 						// r.value.fill(0,r.value.length,0);
+
+						File.saveBytes('./data/${index}.data',d);
 
 						
 					}, r);
