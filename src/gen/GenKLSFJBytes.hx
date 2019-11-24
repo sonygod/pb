@@ -109,7 +109,7 @@ class GenKLSFJSONBytes {
 				var from=i * eachCount;
 				var to=(i + 1) * eachCount;
 				for (k in from...to) {
-					var currentIndex = k + i;
+					var currentIndex =k;
 
 					var item = result.value[currentIndex];
 
