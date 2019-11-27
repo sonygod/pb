@@ -68,11 +68,11 @@ class GenKLSFJSONBytes {
 		trace('总数${result.value.length}');
 		var index = 0;
 
-		var threadCounts = 15;
+		var threadCounts = 24;
 
 		var eachCount = Std.int(len / threadCounts);
 
-		trace(eachCount);
+		trace("每个线程的数量" + eachCount);
 		var totals = 0;
 
 		for (i in 0...threadCounts) {
@@ -103,11 +103,11 @@ class GenKLSFJSONBytes {
 		//	return;
 		for (i in 0...threadCounts) {
 			MainLoop.addThread(function() {
-				var r:Ref<Bytes> = Bytes.alloc(322560);
+				var r:Ref<Bytes> = Bytes.alloc(eachCount);
 
 				var itemBytes = Bytes.alloc(8);
-				var from=i * eachCount;
-				var to=(i + 1) * eachCount;
+				var from = i * eachCount;
+				var to = (i + 1) * eachCount;
 				for (k in from...to) {
 					var currentIndex = k + i;
 
@@ -120,17 +120,19 @@ class GenKLSFJSONBytes {
 						index++;
 						// var remain = len - index;
 						// r.value.fill(0,r.value.length,0);
-
-						
 					}, r);
 
 					if (index % 1000 == 0) {
-							trace(index);
-						}
+						trace(index);
+					}
 
-						if(index==totals){
-							trace("恭喜你，完成了");
-						}
+					if(index>125000){
+						trace(index);
+					}
+
+					if (index == totals) {
+						trace("恭喜你，完成了");
+					}
 				}
 			});
 		}
