@@ -123,6 +123,8 @@ class GenKLSFBytes {
 				var itemBytes = Bytes.alloc(8);
 				var from = i * eachCount;
 				var to = (i + 1) * eachCount;
+
+				trace('from =$from  to=$to');
 				for (k in from...to) {
 					var currentIndex = k;
 
