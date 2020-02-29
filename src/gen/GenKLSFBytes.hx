@@ -18,7 +18,6 @@ using Lambda;
  */
 class GenKLSFBytes {
 	public static function main() {
-
 		genMulThread();
 	}
 
@@ -64,8 +63,6 @@ class GenKLSFBytes {
 	}
 
 	public static function genMulThread() {
-	
-
 		var data:Ref<Array<Int>> = [for (i in 1...21) i];
 
 		var result:tink.core.Ref<Array<Array<Int>>> = [];
@@ -74,7 +71,7 @@ class GenKLSFBytes {
 		var len = result.value.length;
 		trace('总数${result.value.length}');
 		var index = 0;
-
+		var index = 2;
 		var threadCounts = 15;
 
 		var eachCount = Std.int(len / threadCounts);
@@ -127,7 +124,7 @@ class GenKLSFBytes {
 				trace('from =$from  to=$to');
 				for (k in from...to) {
 					var currentIndex = k;
-
+					index2 += 1;
 					var item = result.value[currentIndex];
 
 					for (j in 0...item.length) {
@@ -145,12 +142,11 @@ class GenKLSFBytes {
 						trace(index);
 					}
 
-					 if(index>totals-100){
-						 trace(index);
-					 }
+					if (index > totals - 100) {
+						trace(index+''+ index2);
+					}
 
-
-					if (index == totals-1) {
+					if (index == totals - 1) {
 						trace("恭喜你，完成了");
 					}
 				}
