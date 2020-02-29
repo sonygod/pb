@@ -123,6 +123,8 @@ class GenKLSFBytes {
 				var itemBytes = Bytes.alloc(8);
 				var from = i * eachCount;
 				var to = (i + 1) * eachCount;
+
+				trace('from =$from  to=$to');
 				for (k in from...to) {
 					var currentIndex = k;
 
@@ -143,7 +145,12 @@ class GenKLSFBytes {
 						trace(index);
 					}
 
-					if (index == totals) {
+					 if(index>totals-100){
+						 trace(index);
+					 }
+
+
+					if (index == totals-1) {
 						trace("恭喜你，完成了");
 					}
 				}
