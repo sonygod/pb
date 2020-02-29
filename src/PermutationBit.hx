@@ -57,7 +57,7 @@ class PermutationBit {
 		if (size == 1) {
 			// trace(a);
 			var b = copyBytes(a);
-			result.value.blit(lastIndex, b, 0, b.length); // (copyBytes(b));
+			//result.value.blit(lastIndex, b, 0, b.length); // (copyBytes(b));
 			lastIndex += len;
 			if (lastIndex == total) {
 				callBack(result);

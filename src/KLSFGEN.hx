@@ -1,4 +1,4 @@
-import gen.GenKLSFJBytes.GenKLSFJSONBytes;
+import gen.GenKLSFBytes;
 
 class CustomTrace {
 	public static function init() {
@@ -8,13 +8,10 @@ class CustomTrace {
 		};
 	}
 }
-class KLSFGEN{
-    
 
-    public static function main() {
-        
-CustomTrace .init();
-
-        GenKLSFJSONBytes.genMulThread();
-    }
+class KLSFGEN {
+	public static function main() {
+		CustomTrace.init();
+		GenKLSFBytes.genMulThread();
+	}
 }

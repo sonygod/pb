@@ -13,7 +13,6 @@
 -dce full
 -D js-es=6
 -debug
--lib hxgenjs
 -lib tink_querystring
 -lib tink_core
 --next
@@ -26,7 +25,6 @@
 -lib heaps
 -lib ds
 -lib random
--lib hxnodejs
 -lib tink_querystring
 -lib tink_json
 -lib hxbit

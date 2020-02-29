@@ -1,0 +1,15 @@
+-cp src
+
+-main gen.GenKLSFBytes
+-lib tink_await
+-lib tink_core
+
+--each
+
+-hl source/klsf.hl
+
+--next
+
+-cpp out
+
+

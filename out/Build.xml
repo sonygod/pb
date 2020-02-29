@@ -1,0 +1,450 @@
+<xml>
+<set name="HXCPP_API_LEVEL" value="400" />
+<files id="haxe">
+<compilerflag value="-Iinclude"/>
+  <file name="src/tink/core/SignalTrigger.cpp" >
+   <depend name="include/tink/core/LinkObject.h"/>
+   <depend name="include/tink/core/SignalObject.h"/>
+   <depend name="include/tink/core/SignalTrigger.h"/>
+   <depend name="include/tink/core/_Callback/CallbackList_Impl_.h"/>
+   <depend name="include/tink/core/_Callback/ListCell.h"/>
+  </file>
+  <file name="src/tink/core/_Signal/Suspendable.cpp" >
+   <depend name="include/tink/core/LinkObject.h"/>
+   <depend name="include/tink/core/SignalObject.h"/>
+   <depend name="include/tink/core/SignalTrigger.h"/>
+   <depend name="include/tink/core/SimpleLink.h"/>
+   <depend name="include/tink/core/_Callback/CallbackList_Impl_.h"/>
+   <depend name="include/tink/core/_Callback/LinkPair.h"/>
+   <depend name="include/tink/core/_Callback/ListCell.h"/>
+   <depend name="include/tink/core/_Signal/Suspendable.h"/>
+  </file>
+  <file name="src/tink/core/_Signal/SimpleSignal.cpp" >
+   <depend name="include/tink/core/LinkObject.h"/>
+   <depend name="include/tink/core/SignalObject.h"/>
+   <depend name="include/tink/core/_Signal/SimpleSignal.h"/>
+  </file>
+  <file name="src/tink/core/SignalObject.cpp" >
+   <depend name="include/tink/core/LinkObject.h"/>
+   <depend name="include/tink/core/SignalObject.h"/>
+  </file>
+  <file name="src/tink/core/_Signal/Signal_Impl_.cpp" >
+   <depend name="include/haxe/ds/Option.h"/>
+   <depend name="include/tink/core/FutureTrigger.h"/>
+   <depend name="include/tink/core/LinkObject.h"/>
+   <depend name="include/tink/core/Noise.h"/>
+   <depend name="include/tink/core/SignalObject.h"/>
+   <depend name="include/tink/core/SignalTrigger.h"/>
+   <depend name="include/tink/core/SimpleLink.h"/>
+   <depend name="include/tink/core/_Callback/CallbackLink_Impl_.h"/>
+   <depend name="include/tink/core/_Callback/CallbackList_Impl_.h"/>
+   <depend name="include/tink/core/_Callback/Callback_Impl_.h"/>
+   <depend name="include/tink/core/_Callback/LinkPair.h"/>
+   <depend name="include/tink/core/_Callback/ListCell.h"/>
+   <depend name="include/tink/core/_Future/FutureObject.h"/>
+   <depend name="include/tink/core/_Signal/Signal_Impl_.h"/>
+   <depend name="include/tink/core/_Signal/SimpleSignal.h"/>
+   <depend name="include/tink/core/_Signal/Suspendable.h"/>
+  </file>
+  <file name="src/tink/core/_Ref/Ref_Impl_.cpp" >
+   <depend name="include/Std.h"/>
+   <depend name="include/tink/core/_Ref/Ref_Impl_.h"/>
+  </file>
+  <file name="src/tink/core/_Promise/PromiseTrigger_Impl_.cpp" >
+   <depend name="include/tink/core/FutureTrigger.h"/>
+   <depend name="include/tink/core/Outcome.h"/>
+   <depend name="include/tink/core/TypedError.h"/>
+   <depend name="include/tink/core/_Future/FutureObject.h"/>
+   <depend name="include/tink/core/_Promise/PromiseTrigger_Impl_.h"/>
+  </file>
+  <file name="src/tink/core/_Promise/Combiner_Impl_.cpp" >
+   <depend name="include/tink/core/Outcome.h"/>
+   <depend name="include/tink/core/_Future/FutureObject.h"/>
+   <depend name="include/tink/core/_Future/SyncFuture.h"/>
+   <depend name="include/tink/core/_Lazy/LazyConst.h"/>
+   <depend name="include/tink/core/_Lazy/LazyObject.h"/>
+   <depend name="include/tink/core/_Promise/Combiner_Impl_.h"/>
+  </file>
+  <file name="src/tink/core/_Promise/Recover_Impl_.cpp" >
+   <depend name="include/tink/core/TypedError.h"/>
+   <depend name="include/tink/core/_Future/FutureObject.h"/>
+   <depend name="include/tink/core/_Future/SyncFuture.h"/>
+   <depend name="include/tink/core/_Lazy/LazyConst.h"/>
+   <depend name="include/tink/core/_Lazy/LazyObject.h"/>
+   <depend name="include/tink/core/_Promise/Recover_Impl_.h"/>
+  </file>
+  <file name="src/tink/core/_Promise/Next_Impl_.cpp" >
+   <depend name="include/tink/core/Outcome.h"/>
+   <depend name="include/tink/core/_Future/FutureObject.h"/>
+   <depend name="include/tink/core/_Future/SyncFuture.h"/>
+   <depend name="include/tink/core/_Lazy/LazyConst.h"/>
+   <depend name="include/tink/core/_Lazy/LazyObject.h"/>
+   <depend name="include/tink/core/_Promise/Next_Impl_.h"/>
+   <depend name="include/tink/core/_Promise/Promise_Impl_.h"/>
+  </file>
+  <file name="src/tink/core/_Promise/Promise_Impl_.cpp" >
+   <depend name="include/haxe/ds/Option.h"/>
+   <depend name="include/tink/core/FutureTrigger.h"/>
+   <depend name="include/tink/core/LinkObject.h"/>
+   <depend name="include/tink/core/MPair.h"/>
+   <depend name="include/tink/core/Noise.h"/>
+   <depend name="include/tink/core/Outcome.h"/>
+   <depend name="include/tink/core/OutcomeTools.h"/>
+   <depend name="include/tink/core/TypedError.h"/>
+   <depend name="include/tink/core/_Callback/CallbackLink_Impl_.h"/>
+   <depend name="include/tink/core/_Future/FutureObject.h"/>
+   <depend name="include/tink/core/_Future/Future_Impl_.h"/>
+   <depend name="include/tink/core/_Future/SyncFuture.h"/>
+   <depend name="include/tink/core/_Lazy/LazyConst.h"/>
+   <depend name="include/tink/core/_Lazy/LazyObject.h"/>
+   <depend name="include/tink/core/_Promise/Promise_Impl_.h"/>
+  </file>
+  <file name="src/tink/core/MPair.cpp" >
+   <depend name="include/tink/core/MPair.h"/>
+  </file>
+  <file name="src/tink/core/_Pair/Pair_Impl_.cpp" >
+   <depend name="include/tink/core/MPair.h"/>
+   <depend name="include/tink/core/_Pair/Pair_Impl_.h"/>
+  </file>
+  <file name="src/tink/core/_Outcome/OutcomeMapper_Impl_.cpp" >
+   <depend name="include/haxe/ds/Either.h"/>
+   <depend name="include/tink/core/Outcome.h"/>
+   <depend name="include/tink/core/_Outcome/OutcomeMapper_Impl_.h"/>
+  </file>
+  <file name="src/tink/core/OutcomeTools.cpp" >
+   <depend name="include/haxe/ds/Option.h"/>
+   <depend name="include/tink/core/Outcome.h"/>
+   <depend name="include/tink/core/OutcomeTools.h"/>
+   <depend name="include/tink/core/TypedError.h"/>
+   <depend name="include/tink/core/_Lazy/LazyObject.h"/>
+   <depend name="include/tink/core/_Outcome/OutcomeMapper_Impl_.h"/>
+  </file>
+  <file name="src/tink/core/Outcome.cpp" >
+   <depend name="include/tink/core/Outcome.h"/>
+  </file>
+  <file name="src/tink/core/OptionIter.cpp" >
+   <depend name="include/haxe/ds/Option.h"/>
+   <depend name="include/tink/core/OptionIter.h"/>
+  </file>
+  <file name="src/tink/core/OptionTools.cpp" >
+   <depend name="include/haxe/ds/Option.h"/>
+   <depend name="include/tink/core/OptionIter.h"/>
+   <depend name="include/tink/core/OptionTools.h"/>
+   <depend name="include/tink/core/TypedError.h"/>
+   <depend name="include/tink/core/_Lazy/LazyObject.h"/>
+  </file>
+  <file name="src/tink/core/NamedWith.cpp" >
+   <depend name="include/tink/core/NamedWith.h"/>
+  </file>
+  <file name="src/tink/core/_Lazy/LazyFunc.cpp" >
+   <depend name="include/tink/core/_Lazy/LazyFunc.h"/>
+   <depend name="include/tink/core/_Lazy/LazyObject.h"/>
+  </file>
+  <file name="src/tink/core/_Lazy/Lazy_Impl_.cpp" >
+   <depend name="include/tink/core/_Lazy/LazyConst.h"/>
+   <depend name="include/tink/core/_Lazy/LazyFunc.h"/>
+   <depend name="include/tink/core/_Lazy/LazyObject.h"/>
+   <depend name="include/tink/core/_Lazy/Lazy_Impl_.h"/>
+  </file>
+  <file name="src/tink/core/_Future/LazyTrigger.cpp" >
+   <depend name="include/tink/core/FutureTrigger.h"/>
+   <depend name="include/tink/core/LinkObject.h"/>
+   <depend name="include/tink/core/_Callback/Callback_Impl_.h"/>
+   <depend name="include/tink/core/_Future/FutureObject.h"/>
+   <depend name="include/tink/core/_Future/Future_Impl_.h"/>
+   <depend name="include/tink/core/_Future/LazyTrigger.h"/>
+  </file>
+  <file name="src/tink/core/FutureTrigger.cpp" >
+   <depend name="include/tink/core/FutureTrigger.h"/>
+   <depend name="include/tink/core/LinkObject.h"/>
+   <depend name="include/tink/core/_Callback/CallbackList_Impl_.h"/>
+   <depend name="include/tink/core/_Callback/Callback_Impl_.h"/>
+   <depend name="include/tink/core/_Callback/ListCell.h"/>
+   <depend name="include/tink/core/_Future/FutureObject.h"/>
+   <depend name="include/tink/core/_Future/SimpleFuture.h"/>
+   <depend name="include/tink/core/_Future/SyncFuture.h"/>
+   <depend name="include/tink/core/_Lazy/LazyConst.h"/>
+   <depend name="include/tink/core/_Lazy/LazyObject.h"/>
+  </file>
+  <file name="src/tink/core/_Future/NestedFuture.cpp" >
+   <depend name="include/tink/core/FutureTrigger.h"/>
+   <depend name="include/tink/core/LinkObject.h"/>
+   <depend name="include/tink/core/_Callback/Callback_Impl_.h"/>
+   <depend name="include/tink/core/_Future/FutureObject.h"/>
+   <depend name="include/tink/core/_Future/NestedFuture.h"/>
+  </file>
+  <file name="src/tink/core/_Future/SimpleFuture.cpp" >
+   <depend name="include/tink/core/FutureTrigger.h"/>
+   <depend name="include/tink/core/LinkObject.h"/>
+   <depend name="include/tink/core/_Callback/Callback_Impl_.h"/>
+   <depend name="include/tink/core/_Future/FutureObject.h"/>
+   <depend name="include/tink/core/_Future/Future_Impl_.h"/>
+   <depend name="include/tink/core/_Future/SimpleFuture.h"/>
+  </file>
+  <file name="src/tink/core/_Future/Future_Impl_.cpp" >
+   <depend name="include/haxe/Timer.h"/>
+   <depend name="include/haxe/ds/Either.h"/>
+   <depend name="include/tink/core/FutureTrigger.h"/>
+   <depend name="include/tink/core/LinkObject.h"/>
+   <depend name="include/tink/core/MPair.h"/>
+   <depend name="include/tink/core/Noise.h"/>
+   <depend name="include/tink/core/Outcome.h"/>
+   <depend name="include/tink/core/OutcomeTools.h"/>
+   <depend name="include/tink/core/_Callback/Callback_Impl_.h"/>
+   <depend name="include/tink/core/_Future/FutureObject.h"/>
+   <depend name="include/tink/core/_Future/Future_Impl_.h"/>
+   <depend name="include/tink/core/_Future/LazyTrigger.h"/>
+   <depend name="include/tink/core/_Future/NestedFuture.h"/>
+   <depend name="include/tink/core/_Future/NeverFuture.h"/>
+   <depend name="include/tink/core/_Future/SimpleFuture.h"/>
+   <depend name="include/tink/core/_Future/SyncFuture.h"/>
+   <depend name="include/tink/core/_Lazy/LazyConst.h"/>
+   <depend name="include/tink/core/_Lazy/LazyObject.h"/>
+   <depend name="include/tink/core/_Outcome/OutcomeMapper_Impl_.h"/>
+  </file>
+  <file name="src/tink/core/_Future/SyncFuture.cpp" >
+   <depend name="include/tink/core/LinkObject.h"/>
+   <depend name="include/tink/core/_Callback/Callback_Impl_.h"/>
+   <depend name="include/tink/core/_Future/FutureObject.h"/>
+   <depend name="include/tink/core/_Future/SimpleFuture.h"/>
+   <depend name="include/tink/core/_Future/SyncFuture.h"/>
+   <depend name="include/tink/core/_Lazy/LazyObject.h"/>
+  </file>
+  <file name="src/tink/core/_Lazy/LazyConst.cpp" >
+   <depend name="include/tink/core/_Lazy/LazyConst.h"/>
+   <depend name="include/tink/core/_Lazy/LazyFunc.h"/>
+   <depend name="include/tink/core/_Lazy/LazyObject.h"/>
+  </file>
+  <file name="src/tink/core/_Lazy/LazyObject.cpp" >
+   <depend name="include/tink/core/_Lazy/LazyObject.h"/>
+  </file>
+  <file name="src/tink/core/Noise.cpp" >
+   <depend name="include/tink/core/Noise.h"/>
+  </file>
+  <file name="src/tink/core/_Future/NeverFuture.cpp" >
+   <depend name="include/tink/core/LinkObject.h"/>
+   <depend name="include/tink/core/_Future/FutureObject.h"/>
+   <depend name="include/tink/core/_Future/NeverFuture.h"/>
+  </file>
+  <file name="src/tink/core/_Future/FutureObject.cpp" >
+   <depend name="include/tink/core/LinkObject.h"/>
+   <depend name="include/tink/core/_Future/FutureObject.h"/>
+  </file>
+  <file name="src/tink/core/_Error/Stack_Impl_.cpp" >
+   <depend name="include/haxe/StackItem.h"/>
+   <depend name="include/tink/core/_Error/Stack_Impl_.h"/>
+  </file>
+  <file name="src/tink/core/TypedError.cpp" >
+   <depend name="include/Std.h"/>
+   <depend name="include/cpp/Lib.h"/>
+   <depend name="include/haxe/StackItem.h"/>
+   <depend name="include/tink/core/Outcome.h"/>
+   <depend name="include/tink/core/TypedError.h"/>
+  </file>
+  <file name="src/tink/core/_Callback/CallbackList_Impl_.cpp" >
+   <depend name="include/tink/core/LinkObject.h"/>
+   <depend name="include/tink/core/_Callback/CallbackList_Impl_.h"/>
+   <depend name="include/tink/core/_Callback/Callback_Impl_.h"/>
+   <depend name="include/tink/core/_Callback/ListCell.h"/>
+  </file>
+  <file name="src/tink/core/_Callback/ListCell.cpp" >
+   <depend name="include/tink/core/LinkObject.h"/>
+   <depend name="include/tink/core/_Callback/Callback_Impl_.h"/>
+   <depend name="include/tink/core/_Callback/ListCell.h"/>
+  </file>
+  <file name="src/tink/core/_Callback/LinkPair.cpp" >
+   <depend name="include/tink/core/LinkObject.h"/>
+   <depend name="include/tink/core/_Callback/LinkPair.h"/>
+  </file>
+  <file name="src/tink/core/SimpleLink.cpp" >
+   <depend name="include/tink/core/LinkObject.h"/>
+   <depend name="include/tink/core/SimpleLink.h"/>
+  </file>
+  <file name="src/tink/core/_Callback/CallbackLink_Impl_.cpp" >
+   <depend name="include/tink/core/LinkObject.h"/>
+   <depend name="include/tink/core/SimpleLink.h"/>
+   <depend name="include/tink/core/_Callback/CallbackLink_Impl_.h"/>
+   <depend name="include/tink/core/_Callback/LinkPair.h"/>
+  </file>
+  <file name="src/tink/core/LinkObject.cpp" >
+   <depend name="include/tink/core/LinkObject.h"/>
+  </file>
+  <file name="src/tink/core/_Callback/Callback_Impl_.cpp" >
+   <depend name="include/haxe/Timer.h"/>
+   <depend name="include/tink/core/Noise.h"/>
+   <depend name="include/tink/core/_Callback/Callback_Impl_.h"/>
+  </file>
+  <file name="src/tink/core/Annex.cpp" >
+   <depend name="include/haxe/IMap.h"/>
+   <depend name="include/haxe/ds/ObjectMap.h"/>
+   <depend name="include/tink/core/Annex.h"/>
+  </file>
+  <file name="src/sys/db/Sqlite.cpp" >
+   <depend name="include/sys/db/Connection.h"/>
+   <depend name="include/sys/db/Sqlite.h"/>
+   <depend name="include/sys/db/_Sqlite/SqliteConnection.h"/>
+  </file>
+  <file name="src/sys/db/_Sqlite/SqliteResultSet.cpp" >
+   <depend name="include/haxe/ds/List.h"/>
+   <depend name="include/sys/db/ResultSet.h"/>
+   <depend name="include/sys/db/_Sqlite/SqliteResultSet.h"/>
+  </file>
+  <file name="src/sys/db/_Sqlite/SqliteConnection.cpp" >
+   <depend name="include/sys/db/Connection.h"/>
+   <depend name="include/sys/db/ResultSet.h"/>
+   <depend name="include/sys/db/_Sqlite/SqliteConnection.h"/>
+   <depend name="include/sys/db/_Sqlite/SqliteResultSet.h"/>
+  </file>
+  <file name="src/sys/db/ResultSet.cpp" >
+   <depend name="include/sys/db/ResultSet.h"/>
+  </file>
+  <file name="src/sys/db/Connection.cpp" >
+   <depend name="include/sys/db/Connection.h"/>
+   <depend name="include/sys/db/ResultSet.h"/>
+  </file>
+  <file name="src/haxe/iterators/ArrayIterator.cpp" >
+   <depend name="include/haxe/iterators/ArrayIterator.h"/>
+  </file>
+  <file name="src/haxe/io/Error.cpp" >
+   <depend name="include/haxe/io/Error.h"/>
+  </file>
+  <file name="src/haxe/io/Bytes.cpp" >
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/haxe/io/Error.h"/>
+  </file>
+  <file name="src/haxe/ds/Option.cpp" >
+   <depend name="include/haxe/ds/Option.h"/>
+  </file>
+  <file name="src/haxe/ds/ObjectMap.cpp" >
+   <depend name="include/haxe/IMap.h"/>
+   <depend name="include/haxe/ds/ObjectMap.h"/>
+  </file>
+  <file name="src/haxe/ds/_List/ListNode.cpp" >
+   <depend name="include/haxe/ds/_List/ListNode.h"/>
+  </file>
+  <file name="src/haxe/ds/List.cpp" >
+   <depend name="include/haxe/ds/List.h"/>
+   <depend name="include/haxe/ds/_List/ListNode.h"/>
+  </file>
+  <file name="src/haxe/ds/Either.cpp" >
+   <depend name="include/haxe/ds/Either.h"/>
+  </file>
+  <file name="src/haxe/Timer.cpp" >
+   <depend name="include/haxe/MainEvent.h"/>
+   <depend name="include/haxe/MainLoop.h"/>
+   <depend name="include/haxe/Timer.h"/>
+  </file>
+  <file name="src/haxe/MainLoop.cpp" >
+   <depend name="include/haxe/EntryPoint.h"/>
+   <depend name="include/haxe/MainEvent.h"/>
+   <depend name="include/haxe/MainLoop.h"/>
+  </file>
+  <file name="src/haxe/MainEvent.cpp" >
+   <depend name="include/haxe/MainEvent.h"/>
+   <depend name="include/haxe/MainLoop.h"/>
+  </file>
+  <file name="src/haxe/Log.cpp" >
+   <depend name="include/Std.h"/>
+   <depend name="include/haxe/Log.h"/>
+  </file>
+  <file name="src/haxe/EntryPoint.cpp" >
+   <depend name="include/haxe/EntryPoint.h"/>
+   <depend name="include/haxe/MainLoop.h"/>
+   <depend name="include/sys/thread/Lock.h"/>
+   <depend name="include/sys/thread/Mutex.h"/>
+  </file>
+  <file name="src/sys/thread/Lock.cpp" >
+   <depend name="include/sys/thread/Lock.h"/>
+  </file>
+  <file name="src/sys/thread/Mutex.cpp" >
+   <depend name="include/sys/thread/Mutex.h"/>
+  </file>
+  <file name="src/haxe/IMap.cpp" >
+   <depend name="include/haxe/IMap.h"/>
+  </file>
+  <file name="src/haxe/StackItem.cpp" >
+   <depend name="include/haxe/StackItem.h"/>
+  </file>
+  <file name="src/gen/GenKLSFBytes.cpp" >
+   <depend name="include/PermutationBit.h"/>
+   <depend name="include/Std.h"/>
+   <depend name="include/gen/GenKLSF.h"/>
+   <depend name="include/gen/GenKLSFBytes.h"/>
+   <depend name="include/haxe/Log.h"/>
+   <depend name="include/haxe/MainLoop.h"/>
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/sys/thread/Mutex.h"/>
+  </file>
+  <file name="src/gen/GenKLSF.cpp" >
+   <depend name="include/Permutation.h"/>
+   <depend name="include/Std.h"/>
+   <depend name="include/gen/GenKLSF.h"/>
+   <depend name="include/haxe/Log.h"/>
+   <depend name="include/haxe/MainLoop.h"/>
+   <depend name="include/sys/db/Connection.h"/>
+   <depend name="include/sys/db/ResultSet.h"/>
+   <depend name="include/sys/db/Sqlite.h"/>
+  </file>
+  <file name="src/cpp/Lib.cpp" >
+   <depend name="include/cpp/Lib.h"/>
+  </file>
+  <file name="src/Std.cpp" >
+   <depend name="include/Std.h"/>
+  </file>
+  <file name="src/PermutationBit.cpp" >
+   <depend name="include/PermutationBit.h"/>
+   <depend name="include/haxe/io/Bytes.h"/>
+  </file>
+  <file name="src/Permutation.cpp" >
+   <depend name="include/Permutation.h"/>
+   <depend name="include/Std.h"/>
+   <depend name="include/haxe/Log.h"/>
+   <depend name="include/haxe/io/Bytes.h"/>
+  </file>
+  <file name="src/__boot__.cpp" >
+   <depend name="include/tink/core/Outcome.h"/>
+   <depend name="include/tink/core/Noise.h"/>
+   <depend name="include/haxe/io/Error.h"/>
+   <depend name="include/haxe/ds/Option.h"/>
+   <depend name="include/haxe/ds/Either.h"/>
+   <depend name="include/haxe/StackItem.h"/>
+   <depend name="include/tink/core/_Promise/Promise_Impl_.h"/>
+   <depend name="include/tink/core/_Lazy/Lazy_Impl_.h"/>
+   <depend name="include/tink/core/_Future/Future_Impl_.h"/>
+   <depend name="include/tink/core/_Future/NeverFuture.h"/>
+   <depend name="include/tink/core/_Callback/Callback_Impl_.h"/>
+   <depend name="include/haxe/Log.h"/>
+   <depend name="include/haxe/EntryPoint.h"/>
+   <depend name="include/PermutationBit.h"/>
+  </file>
+  <file name="src/__files__.cpp" if='HXCPP_DEBUGGER'>
+  </file>
+   <file name="${HXCPP}/src/hx/NoFiles.cpp" unless="HXCPP_DEBUGGER" />
+  <file name="src/__resources__.cpp" >
+  </file>
+</files>
+<files id="__lib__">
+<compilerflag value="-Iinclude"/>
+  <file name="src/__lib__.cpp" >
+   <depend name="include/gen/GenKLSFBytes.h"/>
+   <depend name="include/haxe/EntryPoint.h"/>
+  </file>
+</files>
+<files id="__main__">
+<compilerflag value="-Iinclude"/>
+  <file name="src/__main__.cpp" >
+   <depend name="include/gen/GenKLSFBytes.h"/>
+   <depend name="include/haxe/EntryPoint.h"/>
+  </file>
+</files>
+<files id="__resources__">
+</files>
+<files id="__externs__">
+</files>
+<set name="HAXE_OUTPUT" value="GenKLSFBytes" />
+<include name="${HXCPP}/build-tool/BuildCommon.xml"/>
+<include name="${HXCPP}/src/hx/libs/std/Build.xml"/>
+<include name="${HXCPP}/src/hx/libs/std/Build.xml"/>
+<include name="${HXCPP}/src/hx/libs/sqlite/Build.xml"/>
+<error value="Hxcpp is out of date - please update" unlessApi="400" />
+</xml>
