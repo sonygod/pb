@@ -151,7 +151,7 @@ class GenKLSFBytes {
 						trace(index+''+ index2);
 					}
 
-					if (index == totals - 1) {
+					if (index == totals) {
 						trace("恭喜你，完成了");
 					}
 				}
