@@ -135,25 +135,24 @@ class GenKLSFBytes {
 					nemute.acquire();
 					index++;
 					mute.release();
-					// var remain = len - index;
-					// r.value.fill(0,r.value.length,0);
-
-					// File.saveBytes('./data/${index}.data',d);
-				}, r);
-
-				if (index % 1000 == 0) {
-					trace(index);
 				}
+				// var remain = len - index;
+				// r.value.fill(0,r.value.length,0);
 
-				if (index > totals - 100) {
-					trace(index + '' + index2);
-				}
+				// File.saveBytes('./data/${index}.data',d);
+			}, r);
 
-				if (index == totals) {
-					trace("恭喜你，完成了");
-				}
+			if (index % 1000 == 0) {
+				trace(index);
 			}
-		});
-	}
-}
-}
+
+			if (index > totals - 100) {
+				trace(index + '' + index2);
+			}
+
+			if (index == totals) {
+				trace("恭喜你，完成了");
+			}
+		}
+	});
+}}}
