@@ -108,6 +108,7 @@ class GenKLSFBytes {
 		var pp = [for (i in 0...threadCounts) i];
 		//	return;
 		var mute = new Mutex();
+		var arryIndex = [];
 		for (i2 in 0...threadCounts) {
 			MainLoop.addThread(function() {
 				var i = 0;
@@ -123,6 +124,7 @@ class GenKLSFBytes {
 
 				trace('from =$from  to=$to');
 				for (k in from...to) {
+					arryIndex.push(k);
 					var currentIndex = k;
 					index2 += 1;
 					var item = result.value[currentIndex];
@@ -130,27 +132,28 @@ class GenKLSFBytes {
 					for (j in 0...item.length) {
 						itemBytes.set(j, item[j]);
 					}
-					new PermutationBit(itemBytes, function(d) {
-						index++;
-						// var remain = len - index;
-						// r.value.fill(0,r.value.length,0);
+					nemute.acquire();
+					index++;
+					mute.release();
+					// var remain = len - index;
+					// r.value.fill(0,r.value.length,0);
 
-						// File.saveBytes('./data/${index}.data',d);
-					}, r);
+					// File.saveBytes('./data/${index}.data',d);
+				}, r);
 
-					if (index % 1000 == 0) {
-						trace(index);
-					}
-
-					if (index > totals - 100) {
-						trace(index+''+ index2);
-					}
-
-					if (index == totals - 1) {
-						trace("恭喜你，完成了");
-					}
+				if (index % 1000 == 0) {
+					trace(index);
 				}
-			});
-		}
+
+				if (index > totals - 100) {
+					trace(index + '' + index2);
+				}
+
+				if (index == totals) {
+					trace("恭喜你，完成了");
+				}
+			}
+		});
 	}
+}
 }
