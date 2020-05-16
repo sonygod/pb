@@ -1,0 +1,17 @@
+-cp src
+
+-main gen.GenKLSFBytes
+-lib tink_await
+-lib tink_core
+
+--each
+-D hl-ver=1.11.0
+-hl source/klsf.hl
+
+
+--next
+-D hl-ver=1.11.0
+-hl out/main.c -main MyApp
+--cmd gcc -O3 -o myapp -std=c11 -I out out/main.c -lhl
+
+
