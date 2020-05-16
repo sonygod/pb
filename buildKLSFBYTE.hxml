@@ -9,7 +9,6 @@
 -hl source/klsf.hl
 
 --next
--D HXCPP_GC_GENERATIONAL
 -cpp cpp
 
 
