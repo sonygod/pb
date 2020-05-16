@@ -63,6 +63,8 @@ class GenKLSFBytes {
 	}
 
 	public static function genMulThread() {
+
+		var startTime=Date.now().getTime();
 		var data:Ref<Array<Int>> = [for (i in 1...21) i];
 
 		var result:tink.core.Ref<Array<Array<Int>>> = [];
@@ -152,7 +154,7 @@ class GenKLSFBytes {
 					}
 
 					if (index == totals) {
-						trace("恭喜你，完成了");
+						trace('finish spend ${(Date.now().getTime()-startTime)}');
 					}
 				}
 			});
