@@ -10,10 +10,10 @@
 
 --next
 
--cpp out
+-cpp cpp
 
 --next
--D hl-ver=1.12.0
+-D hl-ver=1.11.0
 -hl out/main.c -main MyApp
 -cmd gcc -O3 -o myapp -std=c11 -I out out/main.c -lhl
 
