@@ -13,7 +13,7 @@
 -cpp cpp
 
 --next
-D HXCPP_GC_GENERATIONAL
+-D HXCPP_GC_GENERATIONAL
 -cpp cpp2
 
 
