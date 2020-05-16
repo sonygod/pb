@@ -11,7 +11,7 @@
 
 --next
 -D hl-ver=1.11.0
--hl out/main.c -main gen.GenKLSFBytes
+-hl out/main.c 
 --cmd gcc -O3 -o myapp -std=c11 -I out out/main.c -lhl
 
 
