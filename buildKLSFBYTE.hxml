@@ -13,8 +13,7 @@
 -cpp cpp
 
 --next
--D hl-ver=1.11.0
--hl out/main.c
--cmd gcc -O3 -o myapp -std=c11 -I out out/main.c -lhl
+D HXCPP_GC_GENERATIONAL
+-cpp cpp2
 
 
