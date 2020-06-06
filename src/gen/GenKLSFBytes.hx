@@ -71,10 +71,10 @@ class GenKLSFBytes {
 
 		GenKLSF.computeAllChoices(data, data.value.length, 8, 0, 8, [], 0, result);
 		var len = result.value.length;
-		trace('总数${result.value.length}');
+		trace('total${result.value.length}');
 		var index = 0;
 		var index2 = 0;
-		var threadCounts = 15;
+		var threadCounts = 65;
 
 		var eachCount = Std.int(len / threadCounts);
 
