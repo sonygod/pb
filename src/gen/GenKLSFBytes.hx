@@ -74,7 +74,7 @@ class GenKLSFBytes {
 		trace('total${result.value.length}');
 		var index = 0;
 		var index2 = 0;
-		var threadCounts = 65;
+		var threadCounts = 30;
 
 		var eachCount = Std.int(len / threadCounts);
 
